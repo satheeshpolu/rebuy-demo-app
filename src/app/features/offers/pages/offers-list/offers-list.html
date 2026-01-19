@@ -1,0 +1,20 @@
+<div class="page">
+  <h1>Offers</h1>
+
+  <div class="grid" *ngIf="offers$ | async as offers">
+    <a
+      class="card"
+      *ngFor="let offer of offers; trackBy: trackById"
+      [routerLink]="['/offers', offer.id]"
+    >
+      <div class="title">{{ offer.title }}</div>
+      <div class="desc">{{ offer.description }}</div>
+
+      <div class="meta">
+        <span class="price">€{{ offer.price }}</span>
+        <span class="price">€{{ offer.id }}</span>
+        <span class="date">Valid until: {{ offer.validUntil }}</span>
+      </div>
+    </a>
+  </div>
+</div>
