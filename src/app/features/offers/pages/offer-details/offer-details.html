@@ -1,0 +1,22 @@
+<div class="page" *ngIf="offer$ | async as offer">
+  <ng-container *ngIf="offer; else notFound">
+    <back-button />
+
+    <div class="card">
+      <h1>{{ offer.title }}</h1>
+      <p class="desc">{{ offer.description }}</p>
+
+      <div class="row">
+        <div><strong>Price:</strong> €{{ offer.price }}</div>
+        <div><strong>Valid until:</strong> {{ offer.validUntil }}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #notFound>
+    <a class="back" routerLink="/offers">← Back to offers</a>
+    <div class="card">
+      <h2>Offer not found</h2>
+      <p>The offer ID in the URL doesn’t exist.</p>
+    </div>
+  </ng-template>
