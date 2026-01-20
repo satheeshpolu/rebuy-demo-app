@@ -1,6 +1,5 @@
 <div class="page">
   <h1>Offers</h1>
-  {{data()}}
   <div class="grid">
     <a
       class="card"
@@ -39,8 +38,12 @@
       </div>
     </a>
   </div>
+  <div>
+    <offer-card
+      *ngFor="let p of data()?.offers; trackBy: trackById"
+      [offer]="p"
+      (upvote)="offersService.upvote($event)"
+      (downvote)="offersService.downvote($event)"
+    ></offer-card>
+  </div>
 </div>
-
-
-
-

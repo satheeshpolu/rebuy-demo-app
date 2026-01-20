@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { Offer } from '../models/offer';
+import { Offer, Product, VoteType } from '../models/offer';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 
 const OFFERS: Offer[] = [
   {
@@ -77,17 +77,36 @@ export class OffersService {
     return computed(() => this._offers().find((o) => o.id === id));
   }
 
-  getProducts(): Observable<ProductsResponse> {
-    return this.http.get<ProductsResponse>('assets/mock-data/offers-data.json').pipe(
-      tap((res) => {
-        // TODO: set the offers here
-        // this.chocolates.set(res.data);
-        // this.loading.set(false);
-      }),
-      catchError((err) => {
-        console.error('Failed to load mock products', err);
-        return throwError(() => err);
-      }),
+  // getProducts(): Observable<ProductsResponse> {
+  //   return this.http.get<ProductsResponse>('assets/mock-data/offers-data.json').pipe(
+  //     tap((res) => {
+  //       // TODO: set the offers here
+  //       // this.chocolates.set(res.data);
+  //       // this.loading.set(false);
+  //     }),
+  //     catchError((err) => {
+  //       console.error('Failed to load mock products', err);
+  //       return throwError(() => err);
+  //     }),
+  //   );
+  // }
+  getProducts() {
+    return this.http.get<any>('assets/mock-data/offers-data.json').pipe(
+      map((res) => ({
+        ...res,
+        products: res.offers.map((p: any) => ({
+          ...p,
+          offer: {
+            badge: p.discountPercentage >= 15 ? 'HOT' : 'DEAL',
+            validUntil: p?.meta?.updatedAt, // you can change this
+            discountLabel: `${Math.round(p.discountPercentage)}% OFF`,
+            shippingLabel: p.shippingInformation,
+            returnPolicy: p.returnPolicy,
+            votes: Math.floor(Math.random() * 500),
+            voteType: null as VoteType,
+          },
+        })) as Product[],
+      })),
     );
   }
 }

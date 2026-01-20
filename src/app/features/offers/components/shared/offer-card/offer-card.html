@@ -1,0 +1,76 @@
+<article class="offer-card" tabindex="0" aria-label="Offer card">
+  <div class="media">
+    <img class="thumb" [src]="offer.thumbnail" [alt]="offer.title" />
+
+    <div class="badges">
+      <span class="badge badge--primary" *ngIf="offer.offer.badge">{{ offer.offer.badge }}</span>
+      <span class="badge badge--discount">{{ offer.offer.discountLabel }}</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="top">
+      <div class="title-row">
+        <h3 class="title">{{ offer.title }}</h3>
+        <span class="brand" *ngIf="offer.brand">{{ offer.brand }}</span>
+      </div>
+
+      <p class="desc">{{ offer.description }}</p>
+    </div>
+
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-label">Category</span>
+        <span class="meta-value">{{ offer.category }}</span>
+      </div>
+
+      <div class="meta-item">
+        <span class="meta-label">Rating</span>
+        <span class="meta-value">★ {{ offer.rating }}</span>
+      </div>
+
+      <div class="meta-item">
+        <span class="meta-label">Stock</span>
+        <span class="meta-value" [class.low]="offer.stock < 10">
+          {{ offer.stock }} left
+        </span>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="price">
+        <div class="price-now">\${{ offer.price }}</div>
+        <div class="price-sub">
+          <span class="chip">{{ offer.offer.shippingLabel }}</span>
+          <span class="chip chip--muted">{{ offer.offer.returnPolicy }}</span>
+        </div>
+      </div>
+
+      <div class="vote">
+        <button
+          type="button"
+          class="vote-btn"
+          [class.active]="isUpvoted"
+          [disabled]="isUpvoted"
+          (click)="onUpvote($event)"
+          aria-label="Upvote"
+        >
+          ▲
+        </button>
+
+        <div class="vote-count" aria-label="Votes">{{ offer.offer.votes }}</div>
+
+        <button
+          type="button"
+          class="vote-btn"
+          [class.active]="isDownvoted"
+          [disabled]="isDownvoted"
+          (click)="onDownvote($event)"
+          aria-label="Downvote"
+        >
+          ▼
+        </button>
+      </div>
+    </div>
+  </div>
+</article>
