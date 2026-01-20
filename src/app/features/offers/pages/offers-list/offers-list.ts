@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { OffersService } from '../../services/offers-service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 import { Offer } from '../../models/offer';
-import { OffersService } from '../../services/offers-service';
 
 @Component({
   selector: 'offers-list',
@@ -11,16 +11,20 @@ import { OffersService } from '../../services/offers-service';
   styleUrls: ['./offers-list.css'],
   imports: [RouterLink, CommonModule]
 })
-export class OffersList implements OnInit {
-  offers$!: Observable<Offer[]>;
+export class OffersList {
+  // offers$!: Observable<Offer[]>;
+  // signal (computed) exposed from service
+private readonly offersService = inject(OffersService);
 
-  constructor(private offersService: OffersService) {} //TODO: Replace it with injector
+  offers = this.offersService.offersSorted;
 
-  ngOnInit(): void {
-    this.offers$ = this.offersService.getOffers();
+  upvote(id: number) {
+    this.offersService.upvote(id);
   }
 
-  trackById(_: number, offer: Offer) {
-    return offer.id;
+  downvote(id: number) {
+    this.offersService.downvote(id);
   }
+
+  trackById = (_: number, offer: { id: number }) => offer.id;
 }

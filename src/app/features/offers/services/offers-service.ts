@@ -1,16 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, signal, computed } from '@angular/core';
 import { Offer } from '../models/offer';
 
 const OFFERS: Offer[] = [
-  {
-    id: 3,
-    title: 'New User Special',
-    description: 'Exclusive discount for new users.',
-    price: 19.99,
-    validUntil: '2026-03-31',
-    votes: 42,
-  },
   {
     id: 2,
     title: 'Bundle Pro Deal',
@@ -27,17 +18,42 @@ const OFFERS: Offer[] = [
     validUntil: '2026-07-31',
     votes: 86,
   },
+  {
+    id: 3,
+    title: 'New User Special',
+    description: 'Exclusive discount for new users.',
+    price: 19.99,
+    validUntil: '2026-03-31',
+    votes: 42,
+  },
 ];
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class OffersService {
-  getOffers(): Observable<Offer[]> {
-    return of([...OFFERS].sort((a, b) => b.votes - a.votes));
+  // source of truth
+  private readonly _offers = signal<Offer[]>(OFFERS);
+
+  // derived state (always sorted by votes desc)
+  readonly offersSorted = computed(() =>
+    [...this._offers()].sort((a, b) => b.votes - a.votes)
+  );
+
+  // actions
+  upvote(id: number) {
+    this._offers.update(list =>
+      list.map(o => (o.id === id ? { ...o, votes: o.votes + 1 } : o))
+    );
   }
 
-  getOfferById(id: string): Observable<Offer | undefined> {
-    return of(OFFERS.find((o) => o.id === parseInt(id)));
+  downvote(id: number) {
+    this._offers.update(list =>
+      list.map(o =>
+        o.id === id ? { ...o, votes: Math.max(0, o.votes - 1) } : o
+      )
+    );
+  }
+
+  getOfferById(id: number) {
+    return computed(() => this._offers().find(o => o.id === id));
   }
 }

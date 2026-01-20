@@ -19,7 +19,9 @@
   border-radius: 14px;
   border: 1px solid #e6e6e6;
   background: #fff;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
 
   &:hover {
     transform: translateY(-2px);
