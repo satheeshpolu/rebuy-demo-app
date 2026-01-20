@@ -10,6 +10,8 @@ html, body {
 }
 
 .app-content {
+
+  
   flex: 1;              /* takes remaining space, pushes footer down */
   width: 100%;
   max-width: 1200px;
@@ -19,3 +21,19 @@ html, body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

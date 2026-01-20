@@ -73,51 +73,14 @@ export class OffersService {
   getOfferById(id: number) {
     return computed(() => this._offers().find((o) => o.id === id));
   }
-
-  // getProducts(): Observable<ProductsResponse> {
-  //   return this.http.get<ProductsResponse>('assets/mock-data/offers-data.json').pipe(
-  //     tap((res) => {
-  //       // TODO: set the offers here
-  //       // this.chocolates.set(res.data);
-  //       // this.loading.set(false);
-  //     }),
-  //     catchError((err) => {
-  //       console.error('Failed to load mock products', err);
-  //       return throwError(() => err);
-  //     }),
-  //   );
-  // }
-  loadProducts(): void {
-    this.http
-      .get<any>('assets/mock-data/offers-data.json')
-      .pipe(
-        map(res =>
-          res.offers.map((p: any): Offer => ({
-            id: p.id,
-            title: p.title,
-            description: p.description,
-            price: p.price,
-            // thumbnail: p.thumbnail,
-            // badge: p.discountPercentage >= 15 ? 'HOT' : 'DEAL',
-            validUntil: p?.meta?.updatedAt,
-            // discountLabel: `${Math.round(p.discountPercentage)}% OFF`,
-            // shippingLabel: p.shippingInformation,
-            returnPolicy: p.returnPolicy,
-
-            votes: Math.floor(Math.random() * 500),
-            voteType: null,
-            discountPercentage: 0,
-            rating: 0,
-            stock: 0,
-            category: '',
-            thumbnail: ''
-          }))
-        )
-      )
-      .subscribe(offers => {
-        this._offers.set(offers);
-      });
-  }
+loadProducts(): void {
+  this.http
+    .get<any>('assets/mock-data/offers-data.json')
+    .subscribe(res => {
+      console.log(res);
+      this._offers.set(res.offers);
+    });
+}
 
   getProducts() {
     return this.http.get<any>('assets/mock-data/offers-data.json').pipe(

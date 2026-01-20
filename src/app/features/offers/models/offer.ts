@@ -8,10 +8,10 @@ export interface Offer {
   validUntil: string;
   votes: number;
   voteType: VoteValue;
-   discountPercentage: number;
+  discountPercentage: number;
   rating: number;
   stock: number;
-  returnPolicy?: string;  
+  returnPolicy?: string;
   category: string;
   brand?: string;
   thumbnail: string;
@@ -22,13 +22,11 @@ export type VoteType = 'up' | 'down' | null;
 
 export interface OfferInfo {
   // “Offer” UI fields
-  badge?: string;          // e.g. "HOT", "NEW", "LIMITED"
-  validUntil?: string;     // ISO date string
-  discountLabel?: string;  // e.g. "11% OFF"
-  shippingLabel?: string;  // e.g. "Ships overnight"
-  returnPolicy?: string;   // e.g. "No return policy"
-
-
+  badge?: string; // e.g. "HOT", "NEW", "LIMITED"
+  validUntil?: string; // ISO date string
+  discountLabel?: string; // e.g. "11% OFF"
+  shippingLabel?: string; // e.g. "Ships overnight"
+  returnPolicy?: string; // e.g. "No return policy"
 }
 
 export interface Product {

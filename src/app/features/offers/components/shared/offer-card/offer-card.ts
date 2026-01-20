@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/offer';
 import { MatIconModule } from '@angular/material/icon';
 import { OffersService } from '../../../services/offers-service';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'offer-card',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, MatCardModule, MatButtonModule, RouterLink],
   templateUrl: './offer-card.html',
   styleUrls: ['./offer-card.css'],
 })

@@ -1,44 +1,57 @@
-<article class="product-card">
-  <div class="media">
-    <img class="product-img" [src]="offer.thumbnail" alt="Apple iPhone Charger" loading="lazy" />
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>{{ offer.title }}</mat-card-title>
+    <!-- <mat-card-subtitle>{{ offer.brand }}</mat-card-subtitle> -->
+  </mat-card-header>
+  <div
+  class="discount-badge"
+  [class.hot]="offer.discountPercentage >= 15"
+  [class.medium]="offer.discountPercentage >= 5 && offer.discountPercentage < 15"
+>
+  <mat-icon>local_fire_department</mat-icon>
+  <span>{{ offer.discountPercentage }}% OFF</span>
+</div>
+
+  <div class="card-image">
+    <img
+      mat-card-image
+      [src]="offer.thumbnail"
+      alt="Photo of a Shiba Inu"
+      [routerLink]="['/offers', offer.id]"
+    />
   </div>
 
-  <!-- content -->
-  <div class="content">
-    <h3 class="title">{{ offer.title }}</h3>
-
-    <p class="desc">
+  <mat-card-content>
+    <p class="card-content">
       {{ offer.description }}
     </p>
+  </mat-card-content>
+  <mat-card-actions class="mat-actions-row">
+    <!-- LHS -->
+    <span class="price">${{ offer.price }}</span>
 
-    <!-- bottom row -->
-    <div class="bottom">
-      <div class="price">${{ offer.price }}</div>
+    <!-- pushes next items to RHS -->
+    <span class="mat-spacer"></span>
 
-      <!-- <div class="actions">
-        <mat-icon (click)="onUpvote($event, offer.id)" [class.disabled]="offer.voteType === 'up'">thumb_up</mat-icon>
-        {{offer.votes}} {{offer.voteType}}
-        <mat-icon>thumb_down</mat-icon>
-      </div> -->
-      <div class="actions">
-        <button
-          type="button"
-          class="icon-only-btn"
-          (click)="onUpvote($event, offer.id)"
-          [disabled]="offer.voteType === 'up'"
-        >
-          <mat-icon>thumb_up</mat-icon>
-        </button>
-        {{ offer.votes }}
-        <button
-          type="button"
-          class="icon-only-btn"
-          (click)="onDownvote($event, offer.id)"
-          [disabled]="offer.voteType === 'down'"
-        >
-          <mat-icon>thumb_down</mat-icon>
-        </button>
-      </div>
-    </div>
-  </div>
-</article>
+    <!-- RHS -->
+    <button
+      mat-icon-button
+      class="icon-only-btn"
+      (click)="onUpvote($event, offer.id)"
+      [disabled]="offer.voteType === 'up'"
+    >
+      <mat-icon class="thumb_up">thumb_up</mat-icon>
+    </button>
+
+    <span class="votes">{{ offer.votes }}</span>
+
+    <button
+      mat-icon-button
+      (click)="onDownvote($event, offer.id)"
+      [disabled]="offer.voteType === 'down'"
+    >
+      <mat-icon class="thumb_down">thumb_down</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

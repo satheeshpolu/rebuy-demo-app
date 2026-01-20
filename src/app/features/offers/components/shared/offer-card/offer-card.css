@@ -216,7 +216,7 @@
   transform: scale(1.1);
 }
 
-.icon-only-btn {
+/* .icon-only-btn {
   background: none;
   border: none;
   padding: 0;
@@ -227,6 +227,10 @@
 }
 
 .icon-only-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+} */
+button.mat-mdc-button-disabled {
   cursor: not-allowed;
   opacity: 0.4;
 }
@@ -251,7 +255,7 @@
   font-weight: 600;
 }
 
-.icon-only-btn{
+/* .icon-only-btn{
   background:none;
   border:none;
   padding:0;
@@ -264,4 +268,96 @@
 .icon-only-btn:disabled{
   opacity:.35;
   cursor:not-allowed;
+} */
+
+/* parent layout */
+.list {
+  display: flex;
+  flex-direction: column; /* or row */
 }
+
+/* card as flex child */
+/* .example-card {
+  min-width: 0;  
+  width: 100%;
+} */
+.card-content{
+  color: gray;
+}
+
+.card-image{
+  cursor: pointer;
+  display: inline-grid;
+    justify-content: center;
+}
+.mat-actions-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.mat-spacer {
+  flex: 1 1 auto;
+}
+
+.price {
+  font-weight: 800;
+  padding-left: 8px;
+}
+
+.votes {
+  font-weight: 800;
+  padding: 8px;
+  /* text-align: center; */
+}
+.thumb_down {
+color: rgb(237 62 62);
+}
+.thumb_up{
+color: #13a913;
+
+}
+
+
+@keyframes zoomPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  animation: zoomPulse 1.6s ease-in-out infinite;
+}
+
+
+.discount-badge.hot {
+  background: linear-gradient(135deg, #e53935, #ff7043);
+}
+
+.discount-badge.medium {
+  background: linear-gradient(135deg, #fb8c00, #fdd835);
+}
+
+.discount-badge mat-icon {
+  font-size: 16px;
+}
+
+
