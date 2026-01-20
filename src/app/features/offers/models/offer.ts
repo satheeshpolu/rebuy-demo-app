@@ -16,6 +16,20 @@ export interface Offer {
   brand?: string;
   thumbnail: string;
   offer?: OfferInfo;
+  shippingInformation?: string;
+  warrantyInformation?: string;
+  dimensions?: {
+    width: number;
+    height: number;
+    depth: number;
+  }
+  reviews?:[{
+    comment: string;
+    date: string;
+    rating: number;
+    reviewerEmail: string;
+    reviewerName: string;
+  }]
 }
 
 export type VoteType = 'up' | 'down' | null;

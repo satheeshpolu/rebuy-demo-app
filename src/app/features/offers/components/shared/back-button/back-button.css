@@ -1,5 +1,6 @@
 .back {
-  display: inline-block;
+  display: inline-flex;
   margin-bottom: 14px;
   text-decoration: none;
+  gap: 8px;
 }

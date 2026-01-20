@@ -1,22 +1,118 @@
-<div class="page" *ngIf="offer$ | async as offer">
-  <ng-container *ngIf="offer; else notFound">
-    <back-button />
-
-    <div class="card">
-      <h1>{{ offer.title }}</h1>
-      <p class="desc">{{ offer.description }}</p>
-
-      <div class="row">
-        <div><strong>Price:</strong> €{{ offer.price }}</div>
-        <div><strong>Valid until:</strong> {{ offer.validUntil }}</div>
+<div class="offer-page" *ngIf="offer$ | async as offer">
+  <back-button />
+  <div class="offer-card">
+    <!-- LEFT: Media -->
+    <section class="media">
+      <div class="hero">
+        <img class="hero-img" [src]="offer.thumbnail" [alt]="offer.title" />
+        <div class="badge" *ngIf="offer.discountPercentage">
+          <!-- <span class="badge-icon">★</span> -->
+          <span>{{ offer.discountPercentage }}% OFF</span>
+        </div>
       </div>
-    </div>
-  </ng-container>
 
-  <ng-template #notFound>
-    <a class="back" routerLink="/offers">← Back to offers</a>
-    <div class="card">
-      <h2>Offer not found</h2>
-      <p>The offer ID in the URL doesn’t exist.</p>
-    </div>
-  </ng-template>
+      <!-- <div class="thumbs" *ngIf="offer.images?.length">
+        <button class="thumb" type="button" *ngFor="let img of offer.images">
+          <img [src]="img" [alt]="offer.title" />
+        </button>
+      </div> -->
+    </section>
+
+    <!-- RIGHT: Content -->
+    <section class="content">
+      <div class="top">
+        <div>
+          <div class="kicker">
+            <span class="brand">{{ offer.brand }}</span>
+            <span class="dot">•</span>
+            <span class="cat">{{ offer.category }}</span>
+          </div>
+
+          <h1 class="title">{{ offer.title }}</h1>
+          <p class="desc">{{ offer.description }}</p>
+
+          <!-- <div class="chips">
+            <span class="chip" *ngFor="let t of offer.tags">{{ t }}</span>
+          </div> -->
+        </div>
+
+        <!-- Sticky price panel -->
+        <aside class="panel">
+          <div class="price-row">
+            <div class="price">€{{ offer.price | number: '1.2-2' }}</div>
+            <div class="rating">
+              <span class="star">★</span>
+              <span>{{ offer.rating | number: '1.1-1' }}</span>
+            </div>
+          </div>
+
+          <div class="sub">
+            <!-- <span class="stock" [class.in]="offer.availabilityStatus === 'In Stock'">
+              {{ offer.availabilityStatus }}
+            </span> -->
+            <span class="sep">•</span>
+            <span>{{ offer.stock }} left</span>
+          </div>
+
+          <div class="cta">
+            <button class="btn primary" type="button" routerLink="/cart">Add to cart</button>
+
+            <button class="btn ghost" type="button" routerLink="/wishlist">Wishlist</button>
+          </div>
+
+          <div class="mini">
+            <div class="mini-row">
+              <span class="mini-k">Shipping</span>
+              <span class="mini-v">{{ offer.shippingInformation }}</span>
+            </div>
+            <div class="mini-row">
+              <span class="mini-k">Return</span>
+              <span class="mini-v">{{ offer.returnPolicy }}</span>
+            </div>
+            <div class="mini-row">
+              <span class="mini-k">Warranty</span>
+              <span class="mini-v">{{ offer.warrantyInformation }}</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Details grid -->
+      <div class="details">
+        <div class="detail-card">
+          <h3>Details</h3>
+          <div class="kv">
+            <!-- <div class="k">SKU</div><div class="v">{{ offer.sku }}</div> -->
+            <!-- <div class="k">Min order</div><div class="v">{{ offer.minimumOrderQuantity }}</div> -->
+            <!-- <div class="k">Weight</div><div class="v">{{ offer.weight }} kg</div> -->
+            <div class="k">Size</div>
+            <div class="v">
+              {{ offer.dimensions?.width }} × {{ offer.dimensions?.height }} ×
+              {{ offer.dimensions?.depth }} cm
+            </div>
+            <!-- <div class="k">Updated</div> -->
+            <!-- <div class="v">{{ offer.meta?.updatedAt | date:'mediumDate' }}</div> -->
+          </div>
+        </div>
+
+        <div class="detail-card reviews" *ngIf="offer.reviews?.length">
+          <h3>Reviews</h3>
+
+          <div class="review" *ngFor="let r of offer.reviews">
+            <div class="avatar">{{ (r.reviewerName || '?').slice(0,1) }}</div>
+            <div class="review-body">
+              <div class="review-top">
+                <div class="name">{{ r.reviewerName }}</div>
+                <div class="rr">
+                  <span class="star">★</span> {{ r.rating }}
+                </div>
+              </div>
+              <div class="date">{{ r.date | date:'mediumDate' }}</div>
+              <div class="comment">{{ r.comment }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
