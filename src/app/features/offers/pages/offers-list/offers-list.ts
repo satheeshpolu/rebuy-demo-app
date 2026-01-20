@@ -1,29 +1,35 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { OffersService, ProductsResponse } from '../../services/offers-service';
-import { RouterLink } from '@angular/router';
+// import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OfferCard } from '../../components/shared/offer-card/offer-card';
 import { Product } from '../../models/offer';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'offers-list',
   templateUrl: './offers-list.html',
   styleUrls: ['./offers-list.css'],
-  imports: [RouterLink, CommonModule, OfferCard],
+  imports: [CommonModule, OfferCard, MatIconModule],
 })
 export class OffersList implements OnInit {
   readonly offersService = inject(OffersService);
 
   offers = this.offersService.offersSorted;
   // data = signal<ProductsResponse | null>(null);
-    data = signal<Product[]>([]);
+  data = signal<Product[]>([]);
   ngOnInit(): void {
-    this.offersService.getProducts().subscribe(res => {
-    this.data.set(res.offers);
-    console.log('Products response:', res.offers);
-  });
+    // this.offersService.getProducts().subscribe((res) => {
+    //   this.data.set(res.offers);
+    //   console.log('Products response:', res.offers);
+    //   this.offersService.loadProducts();
+    // });
+    // New code
+    this.offersService.loadProducts();
+      console.log('Products response:', this.offers());
+
   }
-  
+
   private stopEvent(event: Event): void {
     event.preventDefault();
     event.stopPropagation();

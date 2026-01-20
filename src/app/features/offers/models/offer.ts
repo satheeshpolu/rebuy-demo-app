@@ -8,6 +8,14 @@ export interface Offer {
   validUntil: string;
   votes: number;
   voteType: VoteValue;
+   discountPercentage: number;
+  rating: number;
+  stock: number;
+  returnPolicy?: string;  
+  category: string;
+  brand?: string;
+  thumbnail: string;
+  offer?: OfferInfo;
 }
 
 export type VoteType = 'up' | 'down' | null;
@@ -20,9 +28,7 @@ export interface OfferInfo {
   shippingLabel?: string;  // e.g. "Ships overnight"
   returnPolicy?: string;   // e.g. "No return policy"
 
-  // voting
-  votes: number;
-  voteType: VoteType;
+
 }
 
 export interface Product {
@@ -36,6 +42,8 @@ export interface Product {
   stock: number;
   brand?: string;
   thumbnail: string;
-
-  offer: OfferInfo;
+  // voting
+  votes: number;
+  voteType: VoteType;
+  offer?: OfferInfo;
 }

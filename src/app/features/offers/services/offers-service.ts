@@ -12,6 +12,12 @@ const OFFERS: Offer[] = [
     validUntil: '2026-12-31',
     votes: 128,
     voteType: null,
+    discountPercentage: 0,
+    rating: 0,
+    stock: 0,
+    category: '',
+    thumbnail: '',
+    // offer: undefined
   },
   {
     id: 4,
@@ -21,25 +27,13 @@ const OFFERS: Offer[] = [
     validUntil: '2026-03-31',
     votes: 10,
     voteType: null,
-  },
-  {
-    id: 1,
-    title: 'Summer Sale - 10% Off',
-    description: 'Get 10% off on all summer items.',
-    price: 49.99,
-    validUntil: '2026-07-31',
-    votes: 86,
-    voteType: null,
-  },
-  {
-    id: 3,
-    title: 'New User Special',
-    description: 'Exclusive discount for new users.',
-    price: 19.99,
-    validUntil: '2026-03-31',
-    votes: 42,
-    voteType: null,
-  },
+    discountPercentage: 0,
+    rating: 0,
+    stock: 0,
+    category: '',
+    thumbnail: '',
+    // offer: undefined
+  }
 ];
 
 export interface ProductsResponse {
@@ -53,11 +47,14 @@ export interface ProductsResponse {
 export class OffersService {
   // source of truth
   private http = inject(HttpClient);
-  private readonly _offers = signal<Offer[]>(OFFERS);
+  // private readonly _offers = signal<Offer[]>(OFFERS);
 
   // derived state (always sorted by votes desc)
   readonly offersSorted = computed(() => [...this._offers()].sort((a, b) => b.votes - a.votes));
 
+  // New code
+    private readonly _offers = signal<Offer[]>([]);
+     readonly offers = this._offers.asReadonly();
   // actions
   upvote(id: number) {
     this._offers.update((list) =>
@@ -90,6 +87,38 @@ export class OffersService {
   //     }),
   //   );
   // }
+  loadProducts(): void {
+    this.http
+      .get<any>('assets/mock-data/offers-data.json')
+      .pipe(
+        map(res =>
+          res.offers.map((p: any): Offer => ({
+            id: p.id,
+            title: p.title,
+            description: p.description,
+            price: p.price,
+            // thumbnail: p.thumbnail,
+            // badge: p.discountPercentage >= 15 ? 'HOT' : 'DEAL',
+            validUntil: p?.meta?.updatedAt,
+            // discountLabel: `${Math.round(p.discountPercentage)}% OFF`,
+            // shippingLabel: p.shippingInformation,
+            returnPolicy: p.returnPolicy,
+
+            votes: Math.floor(Math.random() * 500),
+            voteType: null,
+            discountPercentage: 0,
+            rating: 0,
+            stock: 0,
+            category: '',
+            thumbnail: ''
+          }))
+        )
+      )
+      .subscribe(offers => {
+        this._offers.set(offers);
+      });
+  }
+
   getProducts() {
     return this.http.get<any>('assets/mock-data/offers-data.json').pipe(
       map((res) => ({
@@ -105,7 +134,7 @@ export class OffersService {
             votes: Math.floor(Math.random() * 500),
             voteType: null as VoteType,
           },
-        })) as Product[],
+        })) as Offer[],
       })),
     );
   }

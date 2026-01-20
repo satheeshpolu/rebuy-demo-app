@@ -186,3 +186,82 @@
     width: 100%;
   }
 }
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* price left, icons right */
+  margin-top: 12px;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions mat-icon {
+  cursor: pointer;
+  font-size: 22px;
+  opacity: 0.75;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.actions mat-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.icon-only-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.icon-only-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.card-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between; /* price left, rhs right */
+  width:100%;
+}
+
+.rhs{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  margin-left:auto; /* extra guarantee it sticks to RHS */
+}
+
+.count{
+  min-width: 36px;        /* keeps alignment stable */
+  text-align: right;
+  font-weight: 600;
+}
+
+.icon-only-btn{
+  background:none;
+  border:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+}
+
+.icon-only-btn:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}

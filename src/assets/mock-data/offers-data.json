@@ -21,6 +21,8 @@
         "height": 15.24,
         "depth": 27.46
       },
+      "votes": 10,
+      "voteType": null,
       "warrantyInformation": "6 months warranty",
       "shippingInformation": "Ships in 1 week",
       "availabilityStatus": "In Stock",
@@ -82,6 +84,8 @@
         "height": 18.38,
         "depth": 11.53
       },
+      "votes": 20,
+      "voteType": null,
       "warrantyInformation": "3 year warranty",
       "shippingInformation": "Ships in 3-5 business days",
       "availabilityStatus": "In Stock",
