@@ -9,6 +9,7 @@ const OFFERS: Offer[] = [
     price: 99.0,
     validUntil: '2026-12-31',
     votes: 128,
+    voteType: null
   },
   {
     id: 1,
@@ -17,6 +18,7 @@ const OFFERS: Offer[] = [
     price: 49.99,
     validUntil: '2026-07-31',
     votes: 86,
+    voteType: null
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const OFFERS: Offer[] = [
     price: 19.99,
     validUntil: '2026-03-31',
     votes: 42,
+    voteType: null
   },
 ];
 
@@ -41,14 +44,14 @@ export class OffersService {
   // actions
   upvote(id: number) {
     this._offers.update(list =>
-      list.map(o => (o.id === id ? { ...o, votes: o.votes + 1 } : o))
+      list.map(o => (o.id === id ? { ...o, votes: o.votes + 1, voteType: 'up' } : o))
     );
   }
 
   downvote(id: number) {
     this._offers.update(list =>
       list.map(o =>
-        o.id === id ? { ...o, votes: Math.max(0, o.votes - 1) } : o
+        o.id === id ? { ...o, votes: Math.max(0, o.votes - 1), voteType: 'down' } : o
       )
     );
   }
