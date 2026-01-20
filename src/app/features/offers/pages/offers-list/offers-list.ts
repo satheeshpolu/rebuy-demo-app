@@ -3,6 +3,7 @@ import { OffersService, ProductsResponse } from '../../services/offers-service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OfferCard } from '../../components/shared/offer-card/offer-card';
+import { Product } from '../../models/offer';
 
 @Component({
   selector: 'offers-list',
@@ -14,7 +15,8 @@ export class OffersList implements OnInit {
   readonly offersService = inject(OffersService);
 
   offers = this.offersService.offersSorted;
-  data = signal<ProductsResponse | null>(null);
+  // data = signal<ProductsResponse | null>(null);
+    data = signal<Product[]>([]);
   ngOnInit(): void {
     this.offersService.getProducts().subscribe(res => {
     this.data.set(res.offers);
