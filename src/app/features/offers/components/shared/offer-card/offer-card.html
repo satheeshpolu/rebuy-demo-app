@@ -1,0 +1,57 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>{{ offer.title }}</mat-card-title>
+    <!-- <mat-card-subtitle>{{ offer.brand }}</mat-card-subtitle> -->
+  </mat-card-header>
+  <div
+  class="discount-badge"
+  [class.hot]="offer.discountPercentage >= 20"
+  [class.medium]="offer.discountPercentage >= 5 && offer.discountPercentage < 20"
+>
+  <mat-icon>local_fire_department</mat-icon>
+  <span>{{ offer.discountPercentage }}% OFF</span>
+</div>
+
+  <div class="card-image">
+    <img
+      mat-card-image
+      [src]="offer.thumbnail"
+      alt="Photo of a Shiba Inu"
+      [routerLink]="['/offers', offer.id]"
+    />
+  </div>
+
+  <mat-card-content>
+    <p class="card-content">
+      {{ offer.description }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="mat-actions-row">
+    <!-- LHS -->
+    <span class="price">${{ offer.price }}</span>
+
+    <!-- pushes next items to RHS -->
+    <span class="mat-spacer"></span>
+
+    <!-- RHS -->
+    <button
+      mat-icon-button
+      class="icon-only-btn"
+      (click)="onUpvote($event, offer.id)"
+      [disabled]="offer.voteType === 'up'"
+    >
+      <mat-icon class="thumb_up">thumb_up</mat-icon>
+    </button>
+
+    <span class="votes">{{ offer.votes }}</span>
+
+    <button
+      mat-icon-button
+      (click)="onDownvote($event, offer.id)"
+      [disabled]="offer.voteType === 'down'"
+    >
+      <mat-icon class="thumb_down">thumb_down</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

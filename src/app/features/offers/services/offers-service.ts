@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { Offer } from '../models/offer';
+import { Offer, Product, VoteType } from '../models/offer';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 
 const OFFERS: Offer[] = [
   {
@@ -12,6 +12,12 @@ const OFFERS: Offer[] = [
     validUntil: '2026-12-31',
     votes: 128,
     voteType: null,
+    discountPercentage: 0,
+    rating: 0,
+    stock: 0,
+    category: '',
+    thumbnail: '',
+    // offer: undefined
   },
   {
     id: 4,
@@ -21,25 +27,13 @@ const OFFERS: Offer[] = [
     validUntil: '2026-03-31',
     votes: 10,
     voteType: null,
-  },
-  {
-    id: 1,
-    title: 'Summer Sale - 10% Off',
-    description: 'Get 10% off on all summer items.',
-    price: 49.99,
-    validUntil: '2026-07-31',
-    votes: 86,
-    voteType: null,
-  },
-  {
-    id: 3,
-    title: 'New User Special',
-    description: 'Exclusive discount for new users.',
-    price: 19.99,
-    validUntil: '2026-03-31',
-    votes: 42,
-    voteType: null,
-  },
+    discountPercentage: 0,
+    rating: 0,
+    stock: 0,
+    category: '',
+    thumbnail: '',
+    // offer: undefined
+  }
 ];
 
 export interface ProductsResponse {
@@ -53,11 +47,14 @@ export interface ProductsResponse {
 export class OffersService {
   // source of truth
   private http = inject(HttpClient);
-  private readonly _offers = signal<Offer[]>(OFFERS);
+  // private readonly _offers = signal<Offer[]>(OFFERS);
 
   // derived state (always sorted by votes desc)
   readonly offersSorted = computed(() => [...this._offers()].sort((a, b) => b.votes - a.votes));
 
+  // New code
+    private readonly _offers = signal<Offer[]>([]);
+     readonly offers = this._offers.asReadonly();
   // actions
   upvote(id: number) {
     this._offers.update((list) =>
@@ -76,18 +73,32 @@ export class OffersService {
   getOfferById(id: number) {
     return computed(() => this._offers().find((o) => o.id === id));
   }
+loadProducts(): void {
+  this.http
+    .get<any>('assets/mock-data/offers-data.json')
+    .subscribe(res => {
+      console.log(res);
+      this._offers.set(res.offers);
+    });
+}
 
-  getProducts(): Observable<ProductsResponse> {
-    return this.http.get<ProductsResponse>('assets/mock-data/offers-data.json').pipe(
-      tap((res) => {
-        // TODO: set the offers here
-        // this.chocolates.set(res.data);
-        // this.loading.set(false);
-      }),
-      catchError((err) => {
-        console.error('Failed to load mock products', err);
-        return throwError(() => err);
-      }),
+  getProducts() {
+    return this.http.get<any>('assets/mock-data/offers-data.json').pipe(
+      map((res) => ({
+        ...res,
+        products: res.offers.map((p: any) => ({
+          ...p,
+          offer: {
+            badge: p.discountPercentage >= 15 ? 'HOT' : 'DEAL',
+            validUntil: p?.meta?.updatedAt, // you can change this
+            discountLabel: `${Math.round(p.discountPercentage)}% OFF`,
+            shippingLabel: p.shippingInformation,
+            returnPolicy: p.returnPolicy,
+            votes: Math.floor(Math.random() * 500),
+            voteType: null as VoteType,
+          },
+        })) as Offer[],
+      })),
     );
   }
 }

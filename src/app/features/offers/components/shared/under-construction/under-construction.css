@@ -1,0 +1,32 @@
+.construction-wrapper {
+  height: 100vh;              /* full page height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;    /* vertical centering */
+  gap: 12px;
+  text-align: center;
+}
+
+.construction-icon {
+  font-size: 96px;            /* BIG icon */
+  width: 96px;
+  height: 96px;
+  color: #ff9800;             /* construction orange */
+}
+
+.construction-wrapper p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.construction-icon {
+  animation: pulse 2s ease-in-out infinite;
+}

@@ -1,7 +1,9 @@
 <div class="page">
   <h1>Offers</h1>
-  {{data()}}
-  <div class="grid">
+  <section class="offers-grid">
+    <offer-card *ngFor="let p of offers(); trackBy: trackById" [offer]="p"></offer-card>
+  </section>
+  <!-- <div class="grid">
     <a
       class="card"
       *ngFor="let offer of offers(); trackBy: trackById"
@@ -25,6 +27,7 @@
           >
             ▲
           </button>
+          <mat-icon>thumb_up</mat-icon>
 
           <button
             type="button"
@@ -33,14 +36,11 @@
             aria-label="Downvote"
             [disabled]="offer.voteType === 'down'"
           >
+            <mat-icon>thumb_down</mat-icon>
             ▼
           </button>
         </div>
       </div>
     </a>
-  </div>
+  </div> -->
 </div>
-
-
-
-
