@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { OffersService } from '../../services/offers-service';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { OffersService, ProductsResponse } from '../../services/offers-service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -9,11 +9,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./offers-list.css'],
   imports: [RouterLink, CommonModule],
 })
-export class OffersList {
+export class OffersList implements OnInit {
   private readonly offersService = inject(OffersService);
 
   offers = this.offersService.offersSorted;
-
+  data = signal<ProductsResponse | null>(null);
+  ngOnInit(): void {
+    this.offersService.getProducts().subscribe(res => {
+    this.data.set(res);
+    console.log('Products response:', res.offers.length);
+  });
+  }
+  
   private stopEvent(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
