@@ -6,8 +6,8 @@
   </mat-card-header>
   <div
   class="discount-badge"
-  [class.hot]="offer.discountPercentage >= 15"
-  [class.medium]="offer.discountPercentage >= 5 && offer.discountPercentage < 15"
+  [class.hot]="offer.discountPercentage >= 20"
+  [class.medium]="offer.discountPercentage >= 5 && offer.discountPercentage < 20"
 >
   <mat-icon>local_fire_department</mat-icon>
   <span>{{ offer.discountPercentage }}% OFF</span>
