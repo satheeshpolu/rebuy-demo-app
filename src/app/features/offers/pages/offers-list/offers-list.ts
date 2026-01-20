@@ -2,27 +2,30 @@ import { Component, inject } from '@angular/core';
 import { OffersService } from '../../services/offers-service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
-import { Offer } from '../../models/offer';
 
 @Component({
   selector: 'offers-list',
   templateUrl: './offers-list.html',
   styleUrls: ['./offers-list.css'],
-  imports: [RouterLink, CommonModule]
+  imports: [RouterLink, CommonModule],
 })
 export class OffersList {
-  // offers$!: Observable<Offer[]>;
-  // signal (computed) exposed from service
-private readonly offersService = inject(OffersService);
+  private readonly offersService = inject(OffersService);
 
   offers = this.offersService.offersSorted;
 
-  upvote(id: number) {
+  private stopEvent(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  upvote(event: Event, id: number) {
+    this.stopEvent(event);
     this.offersService.upvote(id);
   }
 
-  downvote(id: number) {
+  downvote(event: Event, id: number) {
+    this.stopEvent(event);
     this.offersService.downvote(id);
   }
 

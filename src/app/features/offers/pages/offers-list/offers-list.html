@@ -19,8 +19,9 @@
           <button
             type="button"
             class="vote-btn"
-            (click)="$event.preventDefault(); $event.stopPropagation(); upvote(offer.id)"
+            (click)="upvote($event, offer.id)"
             aria-label="Upvote"
+            [disabled]="offer.voteType === 'up'"
           >
             ▲
           </button>
@@ -28,8 +29,9 @@
           <button
             type="button"
             class="vote-btn"
-            (click)="$event.preventDefault(); $event.stopPropagation(); downvote(offer.id)"
+            (click)="downvote($event, offer.id)"
             aria-label="Downvote"
+            [disabled]="offer.voteType === 'down'"
           >
             ▼
           </button>
