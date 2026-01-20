@@ -4,4 +4,5 @@ export interface Offer {
   description: string;
   price: number;
   validUntil: string; // ISO date string
+  votes: number;
 }
