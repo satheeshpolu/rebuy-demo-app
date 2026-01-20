@@ -1,0 +1,18 @@
+<header class="navbar">
+  <!-- Left: Logo -->
+  <div class="logo">
+    <a routerLink="/">{{brand}}</a>
+  </div>
+
+  <!-- Hamburger (mobile) -->
+  <button class="hamburger" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  <!-- Right: Navigation links -->
+  <nav class="nav-links" [class.open]="menuOpen()">
+    <a routerLink="/offers" routerLinkActive="active">Offers</a>
+    <a routerLink="/contact-us" routerLinkActive="active">Contact Us</a>
+    <a routerLink="/about-us" routerLinkActive="active">About Us</a>
+  </nav>
+</header>

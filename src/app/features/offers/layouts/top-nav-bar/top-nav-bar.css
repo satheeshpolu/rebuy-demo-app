@@ -1,0 +1,149 @@
+/* Top navbar wrapper */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 64px;
+  padding: 0 18px;
+
+  /* Gradient inline with footer */
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e3a8a 55%,
+    #020617 100%
+  );
+
+  /* Rich UI */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+  /* Glass feel (optional but looks great) */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Subtle glow line (matches footer glow idea) */
+.navbar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(96, 165, 250, 0.85), transparent);
+}
+
+/* Logo */
+.logo a {
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+}
+
+/* Desktop links */
+.nav-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  transition: transform 140ms ease, background 140ms ease, color 140ms ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.nav-links a.active {
+  color: #0b1220;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Hamburger (mobile) */
+.hamburger {
+  display: none;
+  color: #fff;
+
+  font-size: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+
+  padding: 6px 10px;
+  cursor: pointer;
+
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.hamburger:active {
+  transform: translateY(1px);
+}
+
+/* Mobile menu */
+@media (max-width: 768px) {
+  .hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    right: 12px;
+
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+
+    min-width: 220px;
+    padding: 10px;
+
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(2, 6, 23, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .logo a {
+    font-size: 1.05rem;
+  }
+}

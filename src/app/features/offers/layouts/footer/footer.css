@@ -1,0 +1,72 @@
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: linear-gradient(
+    135deg,
+    #1d2b49 0%,
+    #2b53a8 50%,
+    #0b174e 100%
+  );
+
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* .footer {
+  width: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #020617 100%);
+  color: white;
+  padding: 18px 16px;
+} */
+/* Inner container */
+.footer-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 16px;
+}
+
+/* Brand block */
+.footer-brand {
+  text-align: center;
+  display: grid;
+  gap: 4px;
+}
+
+/* Logo */
+.footer-logo {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+}
+
+/* Tagline */
+.footer-tag {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Copyright */
+.footer-copyright {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  .footer-inner {
+    min-height: 64px;
+    padding: 10px 12px;
+  }
+
+  .footer-logo {
+    font-size: 1rem;
+  }
+}
