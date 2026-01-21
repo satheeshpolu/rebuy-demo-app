@@ -37,17 +37,12 @@ This project is built as an MVP using the **latest Angular standalone setup**, f
 
 ## 🛣️ Roadmap
 
-⏳ Persist cart & wishlist using localStorage
-
-🔍 Offer search & filters
-
-🎨 Skeleton loaders & empty states
-
-♿ Accessibility improvements
-
-🧪 More unit & integration tests
-
-🚀 CI/CD pipeline
+- ⏳ Persist cart & wishlist using localStorage
+- 🔍 Offer search & filters
+- 🎨 Skeleton loaders & empty states
+- ♿ Accessibility improvements
+- 🧪 More unit & integration tests
+- 🚀 CI/CD pipeline
 
 ---
 
