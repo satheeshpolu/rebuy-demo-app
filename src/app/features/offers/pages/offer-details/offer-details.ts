@@ -9,6 +9,7 @@ import { Offer } from '../../models/offer';
 import { MatIconModule } from '@angular/material/icon';
 import { DiscountPrice } from '../../components/shared/discount-price/discount-price';
 import { CartService } from '../../services/cart/cart-service';
+import { WishlistService } from '../../services/wishlist/wishlist-service';
 
 @Component({
   selector: 'offer-details',
@@ -21,7 +22,7 @@ export class OfferDetails implements OnInit {
   offer$!: Observable<Offer | undefined>;
 
   private readonly cart = inject(CartService);
-  
+  private readonly wishlist = inject(WishlistService);
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -49,20 +50,33 @@ export class OfferDetails implements OnInit {
   //   this.router.navigate(['/cart']);
   // }
   addToCart(offer: Offer) {
-    this.cart.add({
-      id: offer.id,
-      title: offer.title,
-      thumbnail: offer.thumbnail,
-      price: offer.price,
-      discountPercentage: offer.discountPercentage,
-      stock: offer.stock,
-    }, 1);
+    this.cart.add(
+      {
+        id: offer.id,
+        title: offer.title,
+        thumbnail: offer.thumbnail,
+        price: offer.price,
+        discountPercentage: offer.discountPercentage,
+        stock: offer.stock,
+      },
+      1,
+    );
 
     // optional: navigate to cart right away
     this.router.navigateByUrl('/cart');
   }
 
-  goToWishlist(): void {
-    this.router.navigate(['/wishlist']);
+  isWishlisted = (id: number) => this.wishlist.has(id);
+
+  toggleWishlist(offer: Offer) {
+    const isNowSaved = this.wishlist.toggle({
+      id: offer.id,
+      title: offer.title,
+      thumbnail: offer.thumbnail,
+      price: offer.price,
+      discountPercentage: offer.discountPercentage,
+      brand: offer.brand,
+      category: offer.category,
+    });
   }
 }

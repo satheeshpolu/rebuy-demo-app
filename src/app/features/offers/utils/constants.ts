@@ -10,7 +10,7 @@ export const CONSTANTS = {
 
   // Cart
   CART_TITLE: 'Your cart',
-  CLEAR_CART: 'Clear cart',
+  CLEAR: 'Clear',
   REMOVE: 'Remove',
   CHECKOUT: 'Checkout',
   CHECKOUT_MSG: 'Secure checkout • Easy returns',

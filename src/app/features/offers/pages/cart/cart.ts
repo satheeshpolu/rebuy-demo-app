@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart/cart-service';
 import { DiscountPrice } from '../../components/shared/discount-price/discount-price';
 import { CONSTANTS } from '../../utils/constants';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   standalone: true,
@@ -14,7 +15,7 @@ import { CONSTANTS } from '../../utils/constants';
 })
 export class CartPage {
   readonly cart = inject(CartService);
-
+  private snack = inject(MatSnackBar);
   items = this.cart.items;
   count = this.cart.count;
   subtotal = this.cart.subtotal;
@@ -41,4 +42,5 @@ export class CartPage {
   clear() {
     this.cart.clear();
   }
+  checkout() {} //TODO
 }

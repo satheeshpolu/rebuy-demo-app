@@ -1,1 +1,4 @@
-<a class="back" routerLink="/offers"><mat-icon>arrow_back</mat-icon>{{ title }}</a>
+<a class="back" (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+  {{ title }}
+</a>

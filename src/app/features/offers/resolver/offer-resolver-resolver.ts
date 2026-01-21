@@ -1,20 +1,27 @@
 import { inject } from '@angular/core';
-import { ResolveFn, ActivatedRouteSnapshot, Router, RedirectCommand } from '@angular/router';
-import { Offer } from '../models/offer';
+import { ActivatedRouteSnapshot, ResolveFn, Router } from '@angular/router';
+import { EMPTY, map, take, tap } from 'rxjs';
 import { OffersService } from '../services/offers-service';
+import { Offer } from '../models/offer';
 
 export const offerResolver: ResolveFn<Offer> = (route: ActivatedRouteSnapshot) => {
- const offersService = inject(OffersService);
+  const offersService = inject(OffersService);
   const router = inject(Router);
 
-  const idParam = route.paramMap.get('id');
-  if (!idParam) return new RedirectCommand(router.parseUrl('/not-found'));
-
+  const idParam = route.paramMap.get('id') ?? '';
   const id = Number(idParam);
-  if (!Number.isFinite(id)) return new RedirectCommand(router.parseUrl('/not-found'));
 
-  const offerSig = offersService.getOfferById(id); // Signal<Offer | undefined>
-  const offer = offerSig(); // read current value
+  if (!idParam || Number.isNaN(id)) {
+    router.navigateByUrl('/not-found');
+    return EMPTY;
+  }
 
-  return offer ? offer : new RedirectCommand(router.parseUrl('/not-found'));
+  return offersService.ensureLoaded().pipe(
+    take(1),
+    map(() => offersService.getOfferByIdFromCache(id)),
+    tap((offer) => {
+      if (!offer) router.navigateByUrl('/not-found');
+    }),
+    map((offer) => offer as Offer),
+  );
 };

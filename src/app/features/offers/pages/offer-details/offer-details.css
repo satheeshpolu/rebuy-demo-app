@@ -82,6 +82,39 @@
   background: rgba(255, 255, 255, 0.18);
 }
 
+.btn.wish {
+  display: inline-flex; /* 👈 key */
+  align-items: center; /* vertical alignment */
+  gap: 8px; /* space between icon & text */
+
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 800;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* background: rgba(255,255,255,.06); */
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.btn.wish mat-icon {
+  font-size: 20px;
+  line-height: 1; /* prevents vertical misalignment */
+}
+
+.btn.wish:active {
+  transform: scale(0.98);
+}
+
+.btn.wish.active {
+  background: rgba(239, 68, 68, 0.14);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #e33f3f;
+}
+
 /* Continuous zoom in/out */
 @keyframes pulse {
   0% {

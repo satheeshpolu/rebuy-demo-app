@@ -5,19 +5,30 @@
       <p class="muted">{{ count() }} item(s)</p>
     </div>
 
-    <button class="link danger" type="button" (click)="clear()" [disabled]="items().length === 0">
-      {{ CONSTANTS.CLEAR_CART }}
-    </button>
+    @if (items().length > 0) {
+      <button class="link danger" type="button" (click)="clear()">
+        {{ CONSTANTS.CLEAR }}
+      </button>
+    }
   </header>
 
   <div class="grid" *ngIf="items().length; else empty">
     <main class="items">
       <article class="item" *ngFor="let item of items()">
-        <img class="thumb" [src]="item.thumbnail" [alt]="item.title" loading="lazy" />
+        <img
+          class="thumb"
+          [src]="item.thumbnail"
+          [alt]="item.title"
+          loading="lazy"
+          [routerLink]="['/offers', item.id]"
+        />
 
         <div class="info">
           <div class="name">{{ item.title }}</div>
-
+          <!-- <a class="btn ghost" [routerLink]="['/offers', item.id]">
+            <mat-icon>open_in_new</mat-icon>
+            {{ item.title }}
+          </a> -->
           <discount-price
             [price]="item.price"
             [discountPercentage]="item.discountPercentage"
@@ -90,7 +101,7 @@
           <strong>{{ total() | currency: 'EUR' : 'symbol' : '1.2-2' }}</strong>
         </div>
 
-        <button class="btn primary" type="button">
+        <button class="btn primary" type="button" (click)="checkout()">
           {{ CONSTANTS.CHECKOUT }}<mat-icon aria-hidden="true">arrow_forward</mat-icon>
         </button>
 
@@ -106,11 +117,11 @@
       </div>
 
       <div class="mobile-bar">
-        <div>
+        <!-- <div>
           <div class="muted">Total</div>
           <div class="mobile-total">{{ total() | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
-        </div>
-        <button class="btn primary" type="button">Checkout</button>
+        </div> -->
+        <button class="btn primary" type="button" (click)="checkout()">Checkout</button>
       </div>
     </aside>
   </div>

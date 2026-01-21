@@ -1,14 +1,5 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
-
-export type CartItem = {
-  id: number;
-  title: string;
-  thumbnail: string;
-  price: number;
-  discountPercentage?: number;
-  quantity: number;
-  stock?: number;
-};
+import { CartItem } from '../../models/cart-model';
 
 const STORAGE_KEY = 'rebuy_cart_v1';
 

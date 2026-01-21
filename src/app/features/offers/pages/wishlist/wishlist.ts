@@ -1,13 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { UnderConstruction } from '../../components/shared/under-construction/under-construction';
+import { WishlistService } from '../../services/wishlist/wishlist-service';
+import { DiscountPrice } from '../../components/shared/discount-price/discount-price';
 
 @Component({
-  selector: 'wishlist',
-  imports: [UnderConstruction],
+  standalone: true,
+  imports: [CommonModule, RouterLink, MatIconModule, DiscountPrice],
   templateUrl: './wishlist.html',
-  styleUrl: './wishlist.css',
+  styleUrls: ['./wishlist.css'],
 })
-export class Wishlist {
+export class WishlistPage {
+  private readonly wishlist = inject(WishlistService);
 
+  items = this.wishlist.items;
+  count = this.wishlist.count;
+
+  remove(id: number) {
+    this.wishlist.remove(id);
+  }
+
+  clear() {
+    this.wishlist.clear();
+  }
 }

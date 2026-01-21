@@ -1,7 +1,9 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { Offer, Product, VoteType } from '../models/offer';
+import { Offer, VoteType } from '../models/offer';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { map, Observable, shareReplay, tap } from 'rxjs';
+
+type OffersResponse = { offers: Offer[] };
 
 @Injectable({ providedIn: 'root' })
 export class OffersService {
@@ -16,6 +18,7 @@ export class OffersService {
   private readonly _offers = signal<Offer[]>([]);
   readonly offers = this._offers.asReadonly();
   // actions
+  private load$?: Observable<Offer[]>;
   upvote(id: number) {
     this._offers.update((list) =>
       list.map((o) => (o.id === id ? { ...o, votes: o.votes + 1, voteType: 'up' } : o)),
@@ -57,5 +60,28 @@ export class OffersService {
         })) as Offer[],
       })),
     );
+  }
+
+  ensureLoaded(): Observable<Offer[]> {
+    if (this._offers().length) {
+      return new Observable<Offer[]>((sub) => {
+        sub.next(this._offers());
+        sub.complete();
+      });
+    }
+
+    if (!this.load$) {
+      this.load$ = this.http.get<OffersResponse>('assets/mock-data/offers-data.json').pipe(
+        map((res) => res.offers ?? []),
+        tap((offers) => this._offers.set(offers)),
+        shareReplay(1),
+      );
+    }
+
+    return this.load$;
+  }
+
+  getOfferByIdFromCache(id: number): Offer | undefined {
+    return this._offers().find((o) => o.id === id);
   }
 }

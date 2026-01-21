@@ -76,7 +76,16 @@
               Add to cart
             </button>
 
-            <button class="btn ghost" type="button" (click)="goToWishlist()">Wishlist</button>
+            <button
+              class="btn wish"
+              type="button"
+              (click)="toggleWishlist(offer)"
+              [class.active]="isWishlisted(offer.id)"
+              aria-label="Toggle wishlist"
+            >
+              <mat-icon>{{ isWishlisted(offer.id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+              {{ isWishlisted(offer.id) ? 'Saved' : 'Wishlist' }}
+            </button>
           </div>
 
           <div class="mini">

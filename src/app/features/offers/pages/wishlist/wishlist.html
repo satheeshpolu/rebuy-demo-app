@@ -1,1 +1,61 @@
-<under-construction />
+<section class="wish">
+  <header class="head">
+    <div>
+      <h1>Wishlist</h1>
+      <p class="muted">{{ count() }} saved</p>
+    </div>
+
+    @if (items().length > 0) {
+      <button class="link danger" type="button" (click)="clear()">Clear</button>
+    }
+  </header>
+
+  <div class="grid" *ngIf="items().length; else empty">
+    <article class="card" *ngFor="let item of items()">
+      <img
+        class="img"
+        [src]="item.thumbnail"
+        [alt]="item.title"
+        loading="lazy"
+        [routerLink]="['/offers', item.id]"
+      />
+
+      <div class="body">
+        <div class="title">{{ item.title }}</div>
+        <!-- <div class="meta">
+          <span class="price">{{ item.price | currency:'EUR':'symbol':'1.2-2' }}</span>
+          <span class="pill" *ngIf="item.discountPercentage">{{ item.discountPercentage }}% OFF</span>
+        </div> -->
+        <discount-price
+          [price]="item.price"
+          [discountPercentage]="item.discountPercentage"
+          currencySymbol="€"
+        ></discount-price>
+
+        <div class="actions">
+          <!-- <a class="btn ghost" [routerLink]="['/offers', item.id]">
+            <mat-icon>open_in_new</mat-icon>
+            View
+          </a> -->
+
+          <button class="btn danger" type="button" (click)="remove(item.id)">
+            <mat-icon>favorite</mat-icon>
+            Remove
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <ng-template #empty>
+    <div class="empty">
+      <div class="icon"><mat-icon>favorite_border</mat-icon></div>
+      <h2>No favorites yet</h2>
+      <p class="muted">Tap the heart on an offer to save it here.</p>
+      <a class="btn primary" routerLink="/offers">
+        <mat-icon>local_offer</mat-icon>
+        Browse offers
+      </a>
+    </div>
+  </ng-template>
+</section>
