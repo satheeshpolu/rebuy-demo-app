@@ -50,7 +50,7 @@
   cursor:pointer; opacity:.86; font-weight:600;
 }
 .link:hover{ opacity:1; text-decoration: underline; }
-.link.danger{ color:#ffb4b4; }
+.link.danger{ color:#f12c2c; }
 .link:disabled{ opacity:.35; cursor:not-allowed; text-decoration:none; }
 
 .qty{ display:flex; align-items:center; gap:10px; justify-self:end; }
