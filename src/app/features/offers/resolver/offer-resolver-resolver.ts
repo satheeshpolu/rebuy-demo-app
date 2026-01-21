@@ -1,7 +1,5 @@
 import { inject } from '@angular/core';
 import { ResolveFn, ActivatedRouteSnapshot, Router, RedirectCommand } from '@angular/router';
-import { EMPTY, of } from 'rxjs';
-import { map, switchMap, take, tap } from 'rxjs/operators';
 import { Offer } from '../models/offer';
 import { OffersService } from '../services/offers-service';
 
