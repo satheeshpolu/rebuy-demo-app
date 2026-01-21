@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { BackButton } from '../../components/shared/back-button/back-button';
 import { Offer } from '../../models/offer';
 import { MatIconModule } from '@angular/material/icon';
+import { DiscountPrice } from '../../components/shared/discount-price/discount-price';
 
 @Component({
   selector: 'offer-details',
   standalone: true,
-  imports: [CommonModule, RouterModule, BackButton, MatIconModule],
+  imports: [CommonModule, RouterModule, BackButton, MatIconModule, DiscountPrice],
   templateUrl: './offer-details.html',
   styleUrls: ['./offer-details.css'],
 })
@@ -41,7 +42,7 @@ export class OfferDetails implements OnInit {
   }
 
   addToCart(product: Offer): void {
-    console.log(product)
+    // console.log(product);
     this.router.navigate(['/cart']);
   }
 

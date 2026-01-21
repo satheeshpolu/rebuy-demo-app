@@ -28,7 +28,6 @@ export class OfferCard {
   }
 
   onUpvote(event: Event, id: number) {
-    console.log(this.offer)
     this.stopEvent(event);
     this.offersService.upvote(id);
     // this.upvote.emit(this.offer.id);

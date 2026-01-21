@@ -35,7 +35,6 @@ export class OffersService {
   }
   loadProducts(): void {
     this.http.get<any>('assets/mock-data/offers-data.json').subscribe((res) => {
-      console.log(res);
       this._offers.set(res.offers);
     });
   }
