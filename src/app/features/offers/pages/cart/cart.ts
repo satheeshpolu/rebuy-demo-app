@@ -1,11 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart/cart-service';
 import { DiscountPrice } from '../../components/shared/discount-price/discount-price';
 import { CONSTANTS } from '../../utils/constants';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   standalone: true,
@@ -15,7 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartPage {
   readonly cart = inject(CartService);
-  private snack = inject(MatSnackBar);
+  private readonly router = inject(Router);
+
   items = this.cart.items;
   count = this.cart.count;
   subtotal = this.cart.subtotal;
@@ -42,5 +42,7 @@ export class CartPage {
   clear() {
     this.cart.clear();
   }
-  checkout() {} //TODO
+  checkout() {
+    this.router.navigate(['/check-out']);
+  }
 }

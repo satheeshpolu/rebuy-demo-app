@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFound } from './features/offers/pages/not-found/not-found';
+import { CheckOut } from './features/offers/pages/check-out/check-out';
 
 export const routes: Routes = [
   {
@@ -18,5 +19,6 @@ export const routes: Routes = [
     path: 'cart',
     loadComponent: () => import('./features/offers/pages/cart/cart').then((m) => m.CartPage),
   },
+  { path: 'check-out', component: CheckOut },
   { path: '**', redirectTo: 'not-found' },
 ];
