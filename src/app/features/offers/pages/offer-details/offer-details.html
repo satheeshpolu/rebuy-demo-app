@@ -68,9 +68,11 @@
           </div>
 
           <div class="cta">
-            <button class="btn primary" type="button" routerLink="/cart">Add to cart</button>
+            <button class="btn primary" type="button" (click)="addToCart(offer)">
+              Add to cart
+            </button>
 
-            <button class="btn ghost" type="button" routerLink="/wishlist">Wishlist</button>
+            <button class="btn ghost" type="button" (click)="goToWishlist()">Wishlist</button>
           </div>
 
           <div class="mini">

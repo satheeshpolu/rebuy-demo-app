@@ -39,4 +39,13 @@ export class OfferDetail implements OnInit {
   selectImage(img: string): void {
     this.selectedImage = img;
   }
+
+  addToCart(product: Offer): void {
+    console.log(product)
+    this.router.navigate(['/cart']);
+  }
+
+  goToWishlist(): void {
+    this.router.navigate(['/wishlist']);
+  }
 }
