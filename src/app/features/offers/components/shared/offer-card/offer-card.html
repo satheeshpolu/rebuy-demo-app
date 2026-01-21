@@ -29,8 +29,12 @@
   </mat-card-content>
   <mat-card-actions class="mat-actions-row">
     <!-- LHS -->
-    <span class="price">${{ offer.price }}</span>
-
+    <!-- <span class="price">${{ offer.price }}</span> -->
+<discount-price
+              [price]="offer.price"
+              [discountPercentage]="offer.discountPercentage"
+              currencySymbol="€"
+            ></discount-price>
     <!-- pushes next items to RHS -->
     <span class="mat-spacer"></span>
 
