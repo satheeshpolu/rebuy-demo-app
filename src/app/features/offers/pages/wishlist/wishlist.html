@@ -47,13 +47,27 @@
     </article>
   </div>
 
-  <ng-template #empty>
+  <!-- <ng-template #empty>
     <div class="empty">
       <div class="icon"><mat-icon>favorite_border</mat-icon></div>
       <h2>No favorites yet</h2>
       <p class="muted">Tap the heart on an offer to save it here.</p>
       <a class="btn primary" routerLink="/offers">
         <mat-icon>local_offer</mat-icon>
+        Browse offers
+      </a>
+    </div>
+  </ng-template> -->
+
+  <ng-template #empty>
+    <div class="empty">
+      <div class="empty-icon">
+        <mat-icon aria-hidden="true">shopping_cart</mat-icon>
+      </div>
+      <h2>Your cart is empty</h2>
+      <p class="muted">Looks like you haven’t added anything yet.</p>
+      <a class="btn primary" routerLink="/offers">
+        <mat-icon aria-hidden="true">local_offer</mat-icon>
         Browse offers
       </a>
     </div>
