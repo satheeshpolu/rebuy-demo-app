@@ -18,17 +18,11 @@
         <div class="info">
           <div class="name">{{ item.title }}</div>
 
-          <div class="meta">
-            <span class="price">{{ item.price | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
-            <span class="pill" *ngIf="item.discountPercentage"
-              >{{ item.discountPercentage }}% off</span
-            >
-          </div>
-          <!-- <discount-price
-              [price]="offer.price"
-              [discountPercentage]="offer.discountPercentage"
-              currencySymbol="€"
-            ></discount-price> -->
+          <discount-price
+            [price]="item.price"
+            [discountPercentage]="item.discountPercentage"
+            currencySymbol="€"
+          ></discount-price>
 
           <button class="link" type="button" (click)="remove(item.id)">
             <mat-icon aria-hidden="true">delete</mat-icon>
@@ -58,8 +52,11 @@
           </button>
         </div>
 
-        <div class="line-total">
+        <!-- <div class="line-total">
           {{ item.price * item.quantity | currency: 'EUR' : 'symbol' : '1.2-2' }}
+        </div> -->
+        <div class="line-total">
+          {{ cart.getDiscountedPrice(item) * item.quantity | currency: 'EUR' : 'symbol' : '1.2-2' }}
         </div>
       </article>
     </main>

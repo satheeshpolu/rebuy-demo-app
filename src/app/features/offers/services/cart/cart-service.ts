@@ -29,7 +29,20 @@ export class CartService {
 
   readonly items = this._items;
   readonly count = computed(() => this._items().reduce((s, i) => s + i.quantity, 0));
-  readonly subtotal = computed(() => this._items().reduce((s, i) => s + i.price * i.quantity, 0));
+
+  getDiscountedPrice(item: { price: number; discountPercentage?: number }): number {
+    if (!item.discountPercentage) {
+      return item.price;
+    }
+
+    return item.price * (1 - item.discountPercentage / 100);
+  }
+  readonly subtotal = computed(() =>
+    this._items().reduce((sum, item) => {
+      const finalPrice = this.getDiscountedPrice(item);
+      return sum + finalPrice * item.quantity;
+    }, 0),
+  );
 
   constructor() {
     effect(() => localStorage.setItem(STORAGE_KEY, JSON.stringify(this._items())));
@@ -39,7 +52,7 @@ export class CartService {
     if (qty <= 0) return;
 
     const items = this._items();
-    const idx = items.findIndex(x => x.id === item.id);
+    const idx = items.findIndex((x) => x.id === item.id);
 
     if (idx >= 0) {
       const existing = items[idx];
@@ -57,12 +70,12 @@ export class CartService {
   }
 
   remove(id: number) {
-    this._items.set(this._items().filter(x => x.id !== id));
+    this._items.set(this._items().filter((x) => x.id !== id));
   }
 
   setQuantity(id: number, quantity: number) {
     const q = Math.max(1, Math.floor(quantity));
-    this._items.set(this._items().map(x => (x.id === id ? { ...x, quantity: q } : x)));
+    this._items.set(this._items().map((x) => (x.id === id ? { ...x, quantity: q } : x)));
   }
 
   clear() {
