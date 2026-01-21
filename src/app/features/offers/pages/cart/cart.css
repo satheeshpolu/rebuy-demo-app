@@ -5,7 +5,7 @@
 .cart {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 18px 16px 80px;
+  padding: 18px 24px 80px 0px;
 }
 .cart-head {
   display: flex;
@@ -236,25 +236,6 @@
   opacity: 0.8;
 }
 
-/* Empty state */
-.empty {
-  margin-top: 26px;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 28px 18px;
-  text-align: center;
-}
-.empty-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 10px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
 
 /* Mobile */
 .mobile-bar {
