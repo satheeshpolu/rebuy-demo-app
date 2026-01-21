@@ -4,7 +4,7 @@
 .wish {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 18px 16px;
+  padding: 18px 24px 80px 0px;
 }
 
 .head {
@@ -21,7 +21,7 @@ h1 {
 }
 .muted {
   opacity: 0.75;
-  margin: 6px 0 0;
+  /* margin: 6px 0 0; */
 }
 
 .link {
@@ -114,16 +114,20 @@ h1 {
 }
 
 .btn {
+  width: 100%;
   border: 0;
-  border-radius: 14px;
-  padding: 10px 12px;
-  font-weight: 800;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 750;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  text-decoration: none;
+  margin-top: 10px;
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
 }
 .btn.primary {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(16, 185, 129, 0.9));
@@ -140,20 +144,3 @@ h1 {
   color: #ee2f2f;
 }
 
-.empty {
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 28px 18px;
-  text-align: center;
-}
-.icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 10px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}

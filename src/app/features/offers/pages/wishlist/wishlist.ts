@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { WishlistService } from '../../services/wishlist/wishlist-service';
 import { DiscountPrice } from '../../components/shared/discount-price/discount-price';
+import { EmptyState } from '../../components/shared/empty-state/empty-state';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterLink, MatIconModule, DiscountPrice],
+  imports: [CommonModule, RouterLink, MatIconModule, DiscountPrice, EmptyState],
   templateUrl: './wishlist.html',
   styleUrls: ['./wishlist.css'],
 })

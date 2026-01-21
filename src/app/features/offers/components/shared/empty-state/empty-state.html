@@ -1,0 +1,13 @@
+<div class="empty">
+  <div class="icon">
+    <mat-icon>{{ icon }}</mat-icon>
+  </div>
+
+  <h2>{{ title }}</h2>
+  <p class="muted">{{ description }}</p>
+
+  <a class="btn primary" [routerLink]="ctaLink">
+    <mat-icon aria-hidden="true">{{ ctaIcon }}</mat-icon>
+    {{ ctaLabel }}
+  </a>
+</div>

@@ -17,12 +17,12 @@
     <img
       mat-card-image
       [src]="offer.thumbnail"
-      alt="Photo of a Shiba Inu"
+      [alt]="offer.title"
       [routerLink]="['/offers', offer.id]"
     />
   </div>
 
-  <mat-card-content>
+  <mat-card-content [routerLink]="['/offers', offer.id]">
     <p class="card-content">
       {{ offer.description }}
     </p>

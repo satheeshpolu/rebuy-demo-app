@@ -1,9 +1,18 @@
 <div class="offer-page" *ngIf="offer$ | async as offer">
-  <back-button />
+  <back-button title="Back"/>
   <div class="offer-card">
     <!-- LEFT: Media -->
     <section class="media">
       <div class="hero">
+        <button
+          mat-icon-button
+          class="share-btn"
+          type="button"
+          aria-label="Share product"
+          (click)="shareProduct(offer)"
+        >
+          <mat-icon>share</mat-icon>
+        </button>
         <!-- <img class="hero-img" [src]="offer.thumbnail" [alt]="offer.title" /> -->
         <img class="hero-img" [src]="selectedImage || offer.thumbnail" [alt]="offer.title" />
 

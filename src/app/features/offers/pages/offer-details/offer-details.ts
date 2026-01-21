@@ -79,4 +79,23 @@ export class OfferDetails implements OnInit {
       category: offer.category,
     });
   }
+
+  async shareProduct(offer: Offer) {
+    const url = this.buildProductUrl(offer.id);
+    const title = offer.title;
+    const text = `Check this out: ${offer.title}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url });
+        return;
+      } catch {
+        console.log('user cancelled or share failed');
+      }
+    }
+  }
+
+  private buildProductUrl(id: number): string {
+    return `${window.location.origin}/offers/${id}`;
+  }
 }

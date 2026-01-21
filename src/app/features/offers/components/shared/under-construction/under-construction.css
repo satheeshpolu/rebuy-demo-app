@@ -1,5 +1,4 @@
 .construction-wrapper {
-  height: 100vh;              /* full page height */
   display: flex;
   flex-direction: column;
   align-items: center;
