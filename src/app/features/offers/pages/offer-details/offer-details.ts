@@ -25,13 +25,27 @@ export class OfferDetail implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.offer$ = this.route.data.pipe(map(d => d['offer'] as Offer));
-    this.offer$.subscribe(res => console.log(res))
+    this.offer$ = this.route.data.pipe(map((d) => d['offer'] as Offer));
+    this.offer$.subscribe((res) => console.log(res));
     // this.offer$ = this.route.paramMap.pipe(
     //   switchMap((params) => this.offersService.getOfferById(params.get('id') ?? '')),
     //   tap((offer) => {
     //     if (!offer) this.router.navigateByUrl('/not-found');
     //   }),
     // );
+  }
+  selectedImage: string | null = null;
+
+  selectImage(img: string): void {
+    this.selectedImage = img;
+  }
+
+  addToCart(product: Offer): void {
+    console.log(product)
+    this.router.navigate(['/cart']);
+  }
+
+  goToWishlist(): void {
+    this.router.navigate(['/wishlist']);
   }
 }

@@ -3,46 +3,6 @@ import { Offer, Product, VoteType } from '../models/offer';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 
-const OFFERS: Offer[] = [
-  {
-    id: 2,
-    title: 'Bundle Pro Deal',
-    description: 'Bundle and save more with our Pro plan.',
-    price: 99.0,
-    validUntil: '2026-12-31',
-    votes: 128,
-    voteType: null,
-    discountPercentage: 0,
-    rating: 0,
-    stock: 0,
-    category: '',
-    thumbnail: '',
-    // offer: undefined
-  },
-  {
-    id: 4,
-    title: 'New User Special',
-    description: 'Exclusive discount for new users.',
-    price: 19.99,
-    validUntil: '2026-03-31',
-    votes: 10,
-    voteType: null,
-    discountPercentage: 0,
-    rating: 0,
-    stock: 0,
-    category: '',
-    thumbnail: '',
-    // offer: undefined
-  }
-];
-
-export interface ProductsResponse {
-  total: number;
-  skip: number;
-  limit: number;
-  offers: any[];
-}
-
 @Injectable({ providedIn: 'root' })
 export class OffersService {
   // source of truth
@@ -53,8 +13,8 @@ export class OffersService {
   readonly offersSorted = computed(() => [...this._offers()].sort((a, b) => b.votes - a.votes));
 
   // New code
-    private readonly _offers = signal<Offer[]>([]);
-     readonly offers = this._offers.asReadonly();
+  private readonly _offers = signal<Offer[]>([]);
+  readonly offers = this._offers.asReadonly();
   // actions
   upvote(id: number) {
     this._offers.update((list) =>
@@ -73,14 +33,12 @@ export class OffersService {
   getOfferById(id: number) {
     return computed(() => this._offers().find((o) => o.id === id));
   }
-loadProducts(): void {
-  this.http
-    .get<any>('assets/mock-data/offers-data.json')
-    .subscribe(res => {
+  loadProducts(): void {
+    this.http.get<any>('assets/mock-data/offers-data.json').subscribe((res) => {
       console.log(res);
       this._offers.set(res.offers);
     });
-}
+  }
 
   getProducts() {
     return this.http.get<any>('assets/mock-data/offers-data.json').pipe(

@@ -36,18 +36,18 @@
 .footer-brand {
   text-align: center;
   display: grid;
-  gap: 4px;
+  gap: 8px;
 }
 
 /* Tagline */
 .footer-tag {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
 /* Copyright */
 .footer-copyright {
-  font-size: 0.72rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.5);
 }
 

@@ -240,7 +240,7 @@
 .stock {
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(0,0,0,0.06);
+  background: hsla(83, 62%, 52%, 0.06);
   font-weight: 700;
 }
 

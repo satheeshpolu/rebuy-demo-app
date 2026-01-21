@@ -29,7 +29,13 @@ export interface Offer {
     rating: number;
     reviewerEmail: string;
     reviewerName: string;
-  }]
+  }],
+  minimumOrderQuantity?: string;
+  weight?: number;
+  sku?: string;
+  availabilityStatus?:string;
+  tags?: string[];
+  images?: string[];
 }
 
 export type VoteType = 'up' | 'down' | null;
