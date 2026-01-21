@@ -58,7 +58,7 @@
         "https://cdn.dummyjson.com/product-images/mobile-accessories/amazon-echo-plus/1.webp",
         "https://cdn.dummyjson.com/product-images/mobile-accessories/amazon-echo-plus/2.webp"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/product-images/mobile-accessories/amazon-echo-plus/thumbnail.webp"
+      "thumbnail": "assets/images/1.png"
     },
     {
       "id": 100,
@@ -119,7 +119,7 @@
         "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpods/2.webp",
         "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpods/3.webp"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpods/thumbnail.webp"
+      "thumbnail": "assets/images/2.png"
     },
     {
       "id": 102,
@@ -178,7 +178,7 @@
       "images": [
         "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpower-wireless-charger/1.webp"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpower-wireless-charger/thumbnail.webp"
+      "thumbnail": "assets/images/3.png"
     },
     {
       "id": 103,
@@ -237,7 +237,7 @@
       "images": [
         "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-homepod-mini-cosmic-grey/1.webp"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-homepod-mini-cosmic-grey/thumbnail.webp"
+      "thumbnail": "assets/images/4.png"
     },
     {
       "id": 104,
@@ -297,7 +297,7 @@
         "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-iphone-charger/1.webp",
         "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-iphone-charger/2.webp"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-iphone-charger/thumbnail.webp"
+      "thumbnail": "assets/images/5.png"
     }
   ]
 }

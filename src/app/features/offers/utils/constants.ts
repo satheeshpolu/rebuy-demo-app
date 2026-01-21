@@ -1,6 +1,6 @@
 export const CONSTANTS = {
   // Branding
-  BRAND: 'ReBuy',
+  BRAND: 'Smart Buy',
   BRAND_DESCRIPTION: 'Smart deals. Better buys.',
 
   // Titles

@@ -314,6 +314,9 @@ button.mat-mdc-button-disabled {
 .card-image img {
   transition: transform 0.4s ease;
   will-change: transform;
+  width: 200px;
+  height: 200px;
+  padding: 8px;
 }
 
 .card-image:hover img {
