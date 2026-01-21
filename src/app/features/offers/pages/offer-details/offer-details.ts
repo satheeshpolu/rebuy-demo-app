@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { map, Observable, switchMap, tap } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { BackButton } from '../../components/shared/back-button/back-button';
 import { Offer } from '../../models/offer';
 import { MatIconModule } from '@angular/material/icon';
 import { DiscountPrice } from '../../components/shared/discount-price/discount-price';
+import { CartService } from '../../services/cart/cart-service';
 
 @Component({
   selector: 'offer-details',
@@ -19,6 +20,8 @@ import { DiscountPrice } from '../../components/shared/discount-price/discount-p
 export class OfferDetails implements OnInit {
   offer$!: Observable<Offer | undefined>;
 
+  private readonly cart = inject(CartService);
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -41,9 +44,22 @@ export class OfferDetails implements OnInit {
     this.selectedImage = img;
   }
 
-  addToCart(product: Offer): void {
-    // console.log(product);
-    this.router.navigate(['/cart']);
+  // addToCart(product: Offer): void {
+  //   // console.log(product);
+  //   this.router.navigate(['/cart']);
+  // }
+  addToCart(offer: Offer) {
+    this.cart.add({
+      id: offer.id,
+      title: offer.title,
+      thumbnail: offer.thumbnail,
+      price: offer.price,
+      discountPercentage: offer.discountPercentage,
+      stock: offer.stock,
+    }, 1);
+
+    // optional: navigate to cart right away
+    this.router.navigateByUrl('/cart');
   }
 
   goToWishlist(): void {

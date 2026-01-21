@@ -6,8 +6,15 @@ export const CONSTANTS = {
   // Titles
   OFFERS_TITLE: 'Offers',
   WISHLIST_TITLE: 'Wishlist',
-  CART_TITLE: 'Cart',
   BACK_BUTTON: 'Back',
+
+  // Cart
+  CART_TITLE: 'Your cart',
+  CLEAR_CART: 'Clear cart',
+  REMOVE: 'Remove',
+  CHECKOUT: 'Checkout',
+  CHECKOUT_MSG: 'Secure checkout • Easy returns',
+  CONTINUE_SHOPPING: 'Continue shopping',
 
   // Footer
   COPY_RIGHT: '© Copyright',

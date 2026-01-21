@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFound } from './features/offers/pages/not-found/not-found';
 import { Wishlist } from './features/offers/pages/wishlist/wishlist';
-import { Cart } from './features/offers/pages/cart/cart';
 
 export const routes: Routes = [
   {
@@ -11,6 +10,11 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'offers' },
   { path: 'not-found', component: NotFound },
   { path: 'wishlist', component: Wishlist },
-  { path: 'cart', component: Cart },
+  // { path: 'cart', component: Cart },
+   {
+    path: 'cart',
+    loadComponent: () =>
+      import('./features/offers/pages/cart/cart').then(m => m.CartPage),
+  },
   { path: '**', redirectTo: 'not-found' },
 ];
