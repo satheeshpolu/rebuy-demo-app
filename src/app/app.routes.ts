@@ -9,7 +9,7 @@ export const routes: Routes = [
     loadChildren: () => import('./features/offers/offers-module').then((m) => m.OffersModule),
   },
   { path: '', pathMatch: 'full', redirectTo: 'offers' },
-  // { path: 'not-found', component: NotFound },
+  { path: 'not-found', component: NotFound },
   { path: 'wishlist', component: Wishlist },
   { path: 'cart', component: Cart },
   { path: '**', redirectTo: 'not-found' },
