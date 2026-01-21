@@ -1,12 +1,12 @@
 <section class="cart">
   <header class="cart-head">
     <div class="title">
-      <h1>Your cart</h1>
+      <h1>{{ CONSTANTS.CART_TITLE }}</h1>
       <p class="muted">{{ count() }} item(s)</p>
     </div>
 
     <button class="link danger" type="button" (click)="clear()" [disabled]="items().length === 0">
-      Clear cart
+      {{ CONSTANTS.CLEAR_CART }}
     </button>
   </header>
 
@@ -26,7 +26,7 @@
 
           <button class="link danger" type="button" (click)="remove(item.id)">
             <mat-icon aria-hidden="true">delete</mat-icon>
-            Remove
+            {{ CONSTANTS.REMOVE }}
           </button>
         </div>
 
@@ -91,17 +91,17 @@
         </div>
 
         <button class="btn primary" type="button">
-          Checkout<mat-icon aria-hidden="true">arrow_forward</mat-icon>
+          {{ CONSTANTS.CHECKOUT }}<mat-icon aria-hidden="true">arrow_forward</mat-icon>
         </button>
 
         <a class="btn ghost" routerLink="/offers">
           <mat-icon aria-hidden="true">arrow_back</mat-icon>
-          Continue shopping
+          {{ CONSTANTS.CONTINUE_SHOPPING }}
         </a>
 
         <p class="fine">
           <mat-icon aria-hidden="true">verified</mat-icon>
-          Secure checkout • Easy returns
+          {{ CONSTANTS.CHECKOUT_MSG }}
         </p>
       </div>
 
