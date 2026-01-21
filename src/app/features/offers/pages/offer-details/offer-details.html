@@ -52,7 +52,11 @@
         <!-- Sticky price panel -->
         <aside class="panel">
           <div class="price-row">
-            <div class="price">€{{ offer.price | number: '1.2-2' }}</div>
+            <discount-price
+              [price]="offer.price"
+              [discountPercentage]="offer.discountPercentage"
+              currencySymbol="€"
+            ></discount-price>
             <div class="rating">
               <span class="star">★</span>
               <span>{{ offer.rating | number: '1.1-1' }}</span>

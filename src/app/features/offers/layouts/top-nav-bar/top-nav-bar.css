@@ -12,12 +12,7 @@
   padding: 0 18px;
 
   /* Gradient inline with footer */
-  background: linear-gradient(
-    135deg,
-    #0f172a 0%,
-    #1e3a8a 55%,
-    #020617 100%
-  );
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #020617 100%);
 
   /* Rich UI */
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
@@ -63,7 +58,10 @@
   padding: 8px 12px;
   border-radius: 999px;
 
-  transition: transform 140ms ease, background 140ms ease, color 140ms ease;
+  transition:
+    transform 140ms ease,
+    background 140ms ease,
+    color 140ms ease;
 }
 
 .nav-links a:hover {
@@ -83,14 +81,14 @@
   color: #fff;
 
   font-size: 1.6rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.10);
   border-radius: 12px;
 
   padding: 6px 10px;
   cursor: pointer;
 
-  transition: background 140ms ease, transform 140ms ease;
+  transition:
+    background 140ms ease,
+    transform 140ms ease;
 }
 
 .hamburger:active {

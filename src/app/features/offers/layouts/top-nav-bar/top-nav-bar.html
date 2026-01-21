@@ -6,18 +6,24 @@
 <header class="navbar">
   <!-- Left: Logo -->
   <div class="logo">
-    <a routerLink="/">{{brand}}</a>
+    <a routerLink="/">{{ CONSTANTS.BRAND }}</a>
   </div>
 
   <!-- Hamburger (mobile) -->
-  <button class="hamburger" (click)="toggleMenu()">
-    ☰
+  <button mat-icon-button class="hamburger" aria-label="Toggle menu" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
   </button>
 
   <!-- Right: Navigation links -->
   <nav class="nav-links" [class.open]="menuOpen()">
-    <a routerLink="/offers" routerLinkActive="active">Offers</a>
-    <a routerLink="/wishlist" routerLinkActive="active">Wishlist</a>
-    <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    <a routerLink="/offers" routerLinkActive="active">
+      {{ CONSTANTS.OFFERS_TITLE }}
+    </a>
+    <a routerLink="/wishlist" routerLinkActive="active">
+      {{ CONSTANTS.WISHLIST_TITLE }}
+    </a>
+    <a routerLink="/cart" routerLinkActive="active">
+      {{ CONSTANTS.CART_TITLE }}
+    </a>
   </nav>
 </header>

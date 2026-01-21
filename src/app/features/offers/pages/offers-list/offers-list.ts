@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { OffersService } from '../../services/offers-service';
-// import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OfferCard } from '../../components/shared/offer-card/offer-card';
 import { Product } from '../../models/offer';
 import { MatIconModule } from '@angular/material/icon';
+import { CONSTANTS } from '../../utils/constants';
 
 @Component({
   selector: 'offers-list',
@@ -17,6 +17,8 @@ export class OffersList implements OnInit {
 
   offers = this.offersService.offersSorted;
   data = signal<Product[]>([]);
+  readonly CONSTANTS = CONSTANTS;
+
   ngOnInit(): void {
     // this.offersService.getProducts().subscribe((res) => {
     //   this.data.set(res.offers);
@@ -25,7 +27,7 @@ export class OffersList implements OnInit {
     // });
     // New code
     this.offersService.loadProducts();
-    console.log('Products response:', this.offers());
+    // console.log('Products response:', this.offers());
   }
 
   private stopEvent(event: Event): void {
