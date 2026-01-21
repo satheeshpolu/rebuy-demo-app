@@ -9,13 +9,13 @@ import { Offer } from '../../models/offer';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'offer-detail',
+  selector: 'offer-details',
   standalone: true,
   imports: [CommonModule, RouterModule, BackButton, MatIconModule],
   templateUrl: './offer-details.html',
   styleUrls: ['./offer-details.css'],
 })
-export class OfferDetail implements OnInit {
+export class OfferDetails implements OnInit {
   offer$!: Observable<Offer | undefined>;
 
   constructor(
