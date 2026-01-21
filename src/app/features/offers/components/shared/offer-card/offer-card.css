@@ -301,6 +301,7 @@ button.mat-mdc-button-disabled {
 }
 .card-content {
   color: gray;
+  cursor: pointer;
 }
 
 .card-image {
