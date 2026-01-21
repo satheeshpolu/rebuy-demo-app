@@ -6,11 +6,12 @@ import { OffersService } from '../../../services/offers-service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { DiscountPrice } from '../discount-price/discount-price';
 
 @Component({
   selector: 'offer-card',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatCardModule, MatButtonModule, RouterLink],
+  imports: [CommonModule, MatIconModule, MatCardModule, MatButtonModule, RouterLink, DiscountPrice],
   templateUrl: './offer-card.html',
   styleUrls: ['./offer-card.css'],
 })

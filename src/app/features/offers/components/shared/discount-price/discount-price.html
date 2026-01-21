@@ -1,0 +1,16 @@
+<div class="price-group">
+  <div class="final">
+    <span class="currency">{{ currencySymbol }}</span>
+    <span class="amount">{{ finalPrice() | number: '1.2-2' }}</span>
+  </div>
+
+  <ng-container *ngIf="hasDiscount()">
+    <div class="original">
+      {{ currencySymbol }}{{ price | number: '1.2-2' }}
+    </div>
+
+    <span class="chip" *ngIf="showChip">
+      {{ discountLabel() }}
+    </span>
+  </ng-container>
+</div>
