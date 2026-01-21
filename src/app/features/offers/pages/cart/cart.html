@@ -1,1 +1,134 @@
-<under-construction />
+<section class="cart">
+  <header class="cart-head">
+    <div class="title">
+      <h1>Your cart</h1>
+      <p class="muted">{{ count() }} item(s)</p>
+    </div>
+
+    <button class="link danger" type="button" (click)="clear()" [disabled]="items().length === 0">
+      Clear cart
+    </button>
+  </header>
+
+  <div class="grid" *ngIf="items().length; else empty">
+    <main class="items">
+      <article class="item" *ngFor="let item of items()">
+        <img class="thumb" [src]="item.thumbnail" [alt]="item.title" loading="lazy" />
+
+        <div class="info">
+          <div class="name">{{ item.title }}</div>
+
+          <div class="meta">
+            <span class="price">{{ item.price | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+            <span class="pill" *ngIf="item.discountPercentage"
+              >{{ item.discountPercentage }}% off</span
+            >
+          </div>
+          <!-- <discount-price
+              [price]="offer.price"
+              [discountPercentage]="offer.discountPercentage"
+              currencySymbol="€"
+            ></discount-price> -->
+
+          <button class="link" type="button" (click)="remove(item.id)">
+            <mat-icon aria-hidden="true">delete</mat-icon>
+            Remove
+          </button>
+        </div>
+
+        <div class="qty">
+          <button
+            class="qty-btn"
+            type="button"
+            (click)="dec(item.id)"
+            aria-label="Decrease quantity"
+          >
+            <mat-icon aria-hidden="true">remove</mat-icon>
+          </button>
+
+          <div class="qty-val">{{ item.quantity }}</div>
+
+          <button
+            class="qty-btn"
+            type="button"
+            (click)="inc(item.id)"
+            aria-label="Increase quantity"
+          >
+            <mat-icon aria-hidden="true">add</mat-icon>
+          </button>
+        </div>
+
+        <div class="line-total">
+          {{ item.price * item.quantity | currency: 'EUR' : 'symbol' : '1.2-2' }}
+        </div>
+      </article>
+    </main>
+
+    <aside class="summary">
+      <div class="card">
+        <div class="card-head">
+          <h2>Order summary</h2>
+          <span class="chip">{{ count() }} items</span>
+        </div>
+
+        <div class="row">
+          <span class="muted">Subtotal</span>
+          <strong>{{ subtotal() | currency: 'EUR' : 'symbol' : '1.2-2' }}</strong>
+        </div>
+
+        <div class="row">
+          <span class="muted">Shipping</span>
+          <strong>
+            <ng-container *ngIf="shipping() === 0; else shipCost">Free</ng-container>
+            <ng-template #shipCost>{{
+              shipping() | currency: 'EUR' : 'symbol' : '1.2-2'
+            }}</ng-template>
+          </strong>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="row total">
+          <span>Total</span>
+          <strong>{{ total() | currency: 'EUR' : 'symbol' : '1.2-2' }}</strong>
+        </div>
+
+        <button class="btn primary" type="button">
+          Checkout<mat-icon aria-hidden="true">arrow_forward</mat-icon>
+        </button>
+
+        <a class="btn ghost" routerLink="/offers">
+          <mat-icon aria-hidden="true">arrow_back</mat-icon>
+          Continue shopping
+        </a>
+
+        <p class="fine">
+          <mat-icon aria-hidden="true">verified</mat-icon>
+          Secure checkout • Easy returns
+        </p>
+      </div>
+
+      <div class="mobile-bar">
+        <div>
+          <div class="muted">Total</div>
+          <div class="mobile-total">{{ total() | currency: 'EUR' : 'symbol' : '1.2-2' }}</div>
+        </div>
+        <button class="btn primary" type="button">Checkout</button>
+      </div>
+    </aside>
+  </div>
+
+  <ng-template #empty>
+    <div class="empty">
+      <div class="empty-icon">
+        <mat-icon aria-hidden="true">shopping_cart</mat-icon>
+      </div>
+      <h2>Your cart is empty</h2>
+      <p class="muted">Looks like you haven’t added anything yet.</p>
+      <a class="btn primary" routerLink="/offers">
+        <mat-icon aria-hidden="true">local_offer</mat-icon>
+        Browse offers
+      </a>
+    </div>
+  </ng-template>
+</section>
