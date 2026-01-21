@@ -1,9 +1,74 @@
-# RebuyDemoApp
+# 🛍️ ReBuy Demo App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+**ReBuy** is a modern Angular demo application that showcases a simple marketplace experience where users can browse offers, view offer details, rate products, and manage a cart, all with clean UI, responsive design, and scalable architecture.
+
+This project is built as an MVP using the **latest Angular standalone setup**, focusing on best practices, performance, and developer experience.
+
+---
+
+## 🔗 Live Demo
+
+> _Coming soon_
+
+---
+
+## 🚀 Tech Stack
+
+- **Angular** (Latest, Standalone Components)
+- **TypeScript**
+- **Angular Router**
+- **Angular Signals (state management)**
+- **Angular Material Icons**
+- **Modern CSS (Responsive & Mobile-first)**
+- **Mock JSON Data**
+
+---
+
+## ✨ Features
+
+- 🏷️ Offers listing page
+- 📄 Offer details page with route resolver
+- 👍👎 Vote / rating interactions
+- 🛒 Add to cart & cart page
+- 💖 Wishlist support
+- 📱 Fully responsive navigation (mobile + desktop)
+- 🧭 Client-side routing with guards & resolvers
+- 🧠 Local state management using services & signals
+
+## 🛣️ Roadmap
+
+⏳ Persist cart & wishlist using localStorage
+
+🔍 Offer search & filters
+
+🎨 Skeleton loaders & empty states
+
+♿ Accessibility improvements
+
+🧪 More unit & integration tests
+
+🚀 CI/CD pipeline
+
+---
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- **Node.js** (LTS recommended)
+- **Angular CLI** (optional)
+
+### Installation
+
+```bash
+git clone https://github.com/satheeshpolu/rebuy-demo-app.git
+cd rebuy-demo-app
+npm install
+```
 
 ## Development server
 
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
 To start a local development server, run:
 
 ```bash
