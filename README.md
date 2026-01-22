@@ -106,6 +106,10 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ng test
 ```
 
+### Test Result
+
+![alt text](image.png)
+
 ## Running end-to-end tests
 
 For end-to-end (e2e) testing, run:
