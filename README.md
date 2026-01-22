@@ -31,9 +31,11 @@ This project is built as an MVP using the **latest Angular standalone setup**, f
 - 👍👎 Vote / rating interactions
 - 🛒 Add to cart & cart page
 - 💖 Wishlist support
+- 💳 Checkout & payment flow (secured and guard-protected)
 - 📱 Fully responsive navigation (mobile + desktop)
 - 🧭 Client-side routing with guards & resolvers
 - 🧠 Local state management using services & signals
+- 🔗 Share offers via native share button
 
 ## 🛣️ Roadmap
 
