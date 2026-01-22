@@ -11,7 +11,7 @@ describe('Wishlist', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Wishlist],            // standalone component
+      imports: [Wishlist], // standalone component
       providers: [provideRouter([])], // only needed if UnderConstruction -> BackButton uses routerLink
     }).compileComponents();
 
@@ -22,10 +22,5 @@ describe('Wishlist', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should render UnderConstruction component', () => {
-    const uc = fixture.debugElement.query(By.directive(UnderConstruction));
-    expect(uc).toBeTruthy();
   });
 });

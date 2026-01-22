@@ -13,7 +13,7 @@ import { EmptyState } from '../../components/shared/empty-state/empty-state';
   templateUrl: './cart.html',
   styleUrls: ['./cart.css'],
 })
-export class CartPage {
+export class Cart {
   readonly cart = inject(CartService);
   private readonly router = inject(Router);
 

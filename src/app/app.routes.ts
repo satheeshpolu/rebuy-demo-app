@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFound } from './features/offers/pages/not-found/not-found';
-import { CheckOut } from './features/offers/pages/check-out/check-out';
+import { confirmCheckoutGuard } from './features/offers/guards/confirm-checkout-guard';
 
 export const routes: Routes = [
   {
@@ -12,13 +12,17 @@ export const routes: Routes = [
   {
     path: 'wishlist',
     loadComponent: () =>
-      import('./features/offers/pages/wishlist/wishlist').then((m) => m.WishlistPage),
+      import('./features/offers/pages/wishlist/wishlist').then((m) => m.Wishlist),
   },
-
   {
     path: 'cart',
-    loadComponent: () => import('./features/offers/pages/cart/cart').then((m) => m.CartPage),
+    loadComponent: () => import('./features/offers/pages/cart/cart').then((m) => m.Cart),
   },
-  { path: 'check-out', component: CheckOut },
+  {
+    path: 'check-out',
+    loadComponent: () =>
+      import('./features/offers/pages/check-out/check-out').then((m) => m.CheckOut),
+    canActivate: [confirmCheckoutGuard],
+  },
   { path: '**', redirectTo: 'not-found' },
 ];

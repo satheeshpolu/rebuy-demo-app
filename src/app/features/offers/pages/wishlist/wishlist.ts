@@ -12,7 +12,7 @@ import { EmptyState } from '../../components/shared/empty-state/empty-state';
   templateUrl: './wishlist.html',
   styleUrls: ['./wishlist.css'],
 })
-export class WishlistPage {
+export class Wishlist {
   private readonly wishlist = inject(WishlistService);
 
   items = this.wishlist.items;

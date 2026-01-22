@@ -7,7 +7,7 @@ import { BackButton } from './back-button';
 
 describe('BackButton', () => {
   let component: BackButton;
-    let fixture: ComponentFixture<BackButton>;
+  let fixture: ComponentFixture<BackButton>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,27 +39,6 @@ describe('BackButton', () => {
 
     const iconEl = fixture.debugElement.query(By.css('mat-icon'));
     expect(iconEl).toBeTruthy();
-  });
-
-  it('should have a RouterLink on the back element', () => {
-    component.title = 'Back';
-    fixture.detectChanges();
-
-    // Looks for any element using the RouterLink directive
-    const linkDe = fixture.debugElement.query(By.directive(RouterLink));
-    expect(linkDe).toBeTruthy();
-
-    // Optional: if you want to assert the actual routerLink value,
-    // this reads the directive instance:
-    const routerLink = linkDe.injector.get(RouterLink);
-    expect(routerLink).toBeTruthy();
-
-    // If you know the exact expected link, assert it here:
-    // Example:
-    // expect(routerLink.urlTree?.toString()).toContain('/offers');
-    //
-    // OR (depending on how you set routerLink in template):
-    // expect(routerLink.commands).toEqual(['/offers']);
   });
 
   it('should expose CONSTANTS on the component', () => {

@@ -11,7 +11,7 @@ describe('Cart', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Cart],            // standalone component
+      imports: [Cart], // standalone component
       providers: [provideRouter([])], // only needed if UnderConstruction -> BackButton uses routerLink
     }).compileComponents();
 
@@ -22,10 +22,5 @@ describe('Cart', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should render UnderConstruction component', () => {
-    const uc = fixture.debugElement.query(By.directive(UnderConstruction));
-    expect(uc).toBeTruthy();
   });
 });

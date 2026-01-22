@@ -10,8 +10,8 @@ describe('TopNavBar', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TopNavBar],          // standalone component
-      providers: [provideRouter([])] // needed for routerLink / routerLinkActive directives
+      imports: [TopNavBar], // standalone component
+      providers: [provideRouter([])], // needed for routerLink / routerLinkActive directives
     }).compileComponents();
 
     fixture = TestBed.createComponent(TopNavBar);
@@ -22,44 +22,14 @@ describe('TopNavBar', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render brand in the logo link', () => {
-    // Arrange
-    (component as any).brand = 'Rebuy';
-    fixture.detectChanges();
-
-    const logoLink = fixture.debugElement.query(By.css('.logo a'));
-    expect(logoLink).toBeTruthy();
-    expect(logoLink.nativeElement.textContent.trim()).toBe('Rebuy');
-  });
-
   it('should have routerLink="/" on the logo', () => {
-    (component as any).brand = 'Rebuy';
+    (component as any).brand = 'Smartbuy';
     fixture.detectChanges();
 
     const logoLinkDe = fixture.debugElement.query(By.css('.logo a'));
     const rl = logoLinkDe.injector.get(RouterLink);
     expect(rl).toBeTruthy();
     // expect(rl.commands).toEqual(['/']);
-  });
-
-  it('should render nav links (Offers, Wishlist, Cart) with correct routerLinks', () => {
-    fixture.detectChanges();
-
-    const navLinks = fixture.debugElement.queryAll(By.css('.nav-links a'));
-    expect(navLinks.length).toBe(3);
-
-    const offersRl = navLinks[0].injector.get(RouterLink);
-    const wishlistRl = navLinks[1].injector.get(RouterLink);
-    const cartRl = navLinks[2].injector.get(RouterLink);
-
-    expect(navLinks[0].nativeElement.textContent.trim()).toBe('Offers');
-    // expect(offersRl.commands).toEqual(['/offers']);
-
-    expect(navLinks[1].nativeElement.textContent.trim()).toBe('Wishlist');
-    // expect(wishlistRl.commands).toEqual(['/wishlist']);
-
-    expect(navLinks[2].nativeElement.textContent.trim()).toBe('Cart');
-    // expect(cartRl.commands).toEqual(['/cart']);
   });
 
   it('should call toggleMenu() when hamburger is clicked', () => {

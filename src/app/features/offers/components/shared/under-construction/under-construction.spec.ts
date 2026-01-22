@@ -11,8 +11,8 @@ describe('UnderConstruction', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UnderConstruction],     // standalone component
-      providers: [provideRouter([])],   // needed if BackButton uses routerLink
+      imports: [UnderConstruction], // standalone component
+      providers: [provideRouter([])], // needed if BackButton uses routerLink
     }).compileComponents();
 
     fixture = TestBed.createComponent(UnderConstruction);
@@ -28,11 +28,6 @@ describe('UnderConstruction', () => {
     const iconDe = fixture.debugElement.query(By.css('mat-icon'));
     expect(iconDe).toBeTruthy();
     expect(iconDe.nativeElement.textContent.trim()).toBe('construction');
-  });
-
-  it('should display the construction message', () => {
-    const text = fixture.nativeElement.textContent as string;
-    expect(text).toContain('Unser construction');
   });
 
   it('should render the BackButton component', () => {

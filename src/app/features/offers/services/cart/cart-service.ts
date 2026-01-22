@@ -1,7 +1,7 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
 import { CartItem } from '../../models/cart-model';
 
-const STORAGE_KEY = 'rebuy_cart_v1';
+const STORAGE_KEY = 'cart_v1';
 
 function safeParse<T>(value: string | null, fallback: T): T {
   if (!value) return fallback;

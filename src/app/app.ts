@@ -10,5 +10,5 @@ import { Footer } from './features/offers/layouts/footer/footer';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('rebuy-demo-app');
+  // protected readonly title = signal('smartbuy-demo-app');
 }

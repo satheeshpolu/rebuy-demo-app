@@ -1,7 +1,7 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
 import { WishlistItem } from '../../models/wishlist-model';
 
-const STORAGE_KEY = 'rebuy_wishlist_v1';
+const STORAGE_KEY = 'wishlist_v1';
 
 function safeParse<T>(value: string | null, fallback: T): T {
   if (!value) return fallback;
