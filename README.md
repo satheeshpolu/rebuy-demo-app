@@ -1,6 +1,6 @@
-# 🛍️ ReBuy Demo App
+# 🛍️ SmartBuy Demo App
 
-**ReBuy** is a modern Angular demo application that showcases a simple marketplace experience where users can browse offers, view offer details, rate products, and manage a cart, all with clean UI, responsive design, and scalable architecture.
+**SmartBuy** is a modern Angular demo application that showcases a simple marketplace experience where users can browse offers, view offer details, rate products, and manage a cart, all with clean UI, responsive design, and scalable architecture(Modular).
 
 This project is built as an MVP using the **latest Angular standalone setup**, focusing on best practices, performance, and developer experience.
 
@@ -58,8 +58,8 @@ This project is built as an MVP using the **latest Angular standalone setup**, f
 ### Installation
 
 ```bash
-git clone https://github.com/satheeshpolu/rebuy-demo-app.git
-cd rebuy-demo-app
+git clone https://github.com/satheeshpolu/smartbuy-demo-app.git
+cd smartbuy-demo-app
 npm install
 ```
 

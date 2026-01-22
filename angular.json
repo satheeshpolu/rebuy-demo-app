@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rebuy-demo-app": {
+    "smartbuy-demo-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -60,10 +60,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rebuy-demo-app:build:production"
+              "buildTarget": "smartbuy-demo-app:build:production"
             },
             "development": {
-              "buildTarget": "rebuy-demo-app:build:development"
+              "buildTarget": "smartbuy-demo-app:build:development"
             }
           },
           "defaultConfiguration": "development"
