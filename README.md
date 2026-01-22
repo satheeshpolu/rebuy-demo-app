@@ -8,7 +8,7 @@ This project is built as an MVP using the **latest Angular standalone setup**, f
 
 ## 🔗 Live Demo
 
-> _Coming soon_
+![Demo](src/assets/images/demo.gif)
 
 ---
 
